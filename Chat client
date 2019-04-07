@@ -100,7 +100,7 @@ public class ChatClient {
           outgoing.setText("");
           outgoing.requestFocus();
       } 
-  } //  class SendButtonListener
+  }
   
   public class NameButtonListener implements ActionListener {
       
@@ -113,7 +113,7 @@ public class ChatClient {
            go();  
           
       } 
-  } //  class NameButtonListener
+  } 
   
   
   
@@ -125,9 +125,9 @@ public class ChatClient {
               while ((message = reader.readLine()) != null) {
               System.out.println(message);
               incoming.append(message + "\n");
-              } //while
+              }
           } catch (Exception ex) {ex.printStackTrace();}
-      } //run
-  } //  class IncomingReader
+      }
+  } 
     
-} //  class ChatClient
+} 
