@@ -21,7 +21,7 @@ public class ChatServer {
             reader = new BufferedReader(isReader); 
             } catch (Exception ex) {ex.printStackTrace();}
             
-        } //конструктор ClientHandler
+        }
         
         public void run() {
             String message;
@@ -33,14 +33,14 @@ public class ChatServer {
                     
             } catch(Exception ex) {
                 ex.printStackTrace(); }
-        } //run
+        }
                 
-    }// вложенный class ClientHandler
+    }
     
     public static void main(String[] args) {
         new ChatServer().go();
         
-    }//main
+    }
     
     public void go() {
         clientOutputStreams = new ArrayList();
@@ -56,14 +56,14 @@ public class ChatServer {
                 Thread t = new Thread(new ClientHandler(clientSocket));
                 t.start();
                 System.out.println(date + "\n" + "got a connection with:" + "\n" + clientSocket + "\n");
-            }//while
+            }
             
             
         } catch(Exception ex) {
             ex.printStackTrace();
-        }// try/catch
+        }
         
-    }// go
+    }
     
     public void tellEveryone(String message) {
         Iterator it = clientOutputStreams.iterator();
@@ -74,8 +74,8 @@ public class ChatServer {
                 writer.flush();
             } catch(Exception ex) {
                 ex.printStackTrace();
-            } //try-catch
-        }//while
-    } //tellEveryone
+            } 
+        }
+    } 
     
-} //class ChatServer
+}
