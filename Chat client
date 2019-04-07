@@ -100,7 +100,7 @@ public class ChatClient {
           outgoing.setText("");
           outgoing.requestFocus();
       } 
-  } //  вложенный class SendButtonListener
+  } //  class SendButtonListener
   
   public class NameButtonListener implements ActionListener {
       
@@ -113,7 +113,7 @@ public class ChatClient {
            go();  
           
       } 
-  } //  вложенный class NameButtonListener
+  } //  class NameButtonListener
   
   
   
@@ -128,6 +128,6 @@ public class ChatClient {
               } //while
           } catch (Exception ex) {ex.printStackTrace();}
       } //run
-  } // вложенный class IncomingReader
+  } //  class IncomingReader
     
-} // нешний class ChatClient
+} //  class ChatClient
