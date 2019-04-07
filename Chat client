@@ -79,7 +79,7 @@ public class ChatClient {
             InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
             reader = new BufferedReader(streamReader);
             writer = new PrintWriter(sock.getOutputStream());
-            writer.println("User" + name + " is online" + "\n");
+            writer.println("User " + name + " is online" + "\n");
             writer.flush();
             System.out.println("networking established ");
         } catch(IOException ex) {ex.printStackTrace();
@@ -92,7 +92,7 @@ public class ChatClient {
       Date date = new Date();
       public void actionPerformed(ActionEvent ev) {
           try {
-              writer.println(date  + "\n" + name + " said:" + "\n" + "    " + outgoing.getText());
+              writer.println(date  + "\n" + name + " said:" + "\n" + "    " + outgoing.getText() + "\n");
               writer.flush();
           } catch(Exception ex) {
               ex.printStackTrace();
