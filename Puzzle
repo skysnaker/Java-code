@@ -1,0 +1,524 @@
+
+package puzzle;
+
+public class Puzzle {
+    
+    static int n = 24;
+    private static int[] arrayNums;
+    
+    
+    
+    public void setNums() {
+        int[] n = new int[4];
+        n[0]= 4;
+        n[1]= 1;
+        n[2]= 8;
+        n[3]= 7;
+        arrayNums = n;
+        
+    }
+    
+    public int[] getNums() {
+        return arrayNums;
+    }
+    
+    
+    public static void main(String[] args) {
+        Puzzle s = new Puzzle();
+        s.setNums();
+        s.canBeEqualTo24(s.getNums());
+        System.out.println(s.e19(2, 2, 3, 5));
+        
+        
+    }
+    
+    //sequence 16
+    //first a
+    public int[] seq1 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=a; ar[1]=b; ar[2]=c; ar[3]=d; return ar;}
+    
+    public int[] seq2 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=a; ar[1]=b; ar[2]=d; ar[3]=c; return ar;}
+    
+    public int[] seq3 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=a; ar[1]=c; ar[2]=d; ar[3]=b; return ar;}
+    
+    public int[] seq4 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=a; ar[1]=c; ar[2]=b; ar[3]=d; return ar;}
+    
+    public int[] seq5 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=a; ar[1]=d; ar[2]=c; ar[3]=b; return ar;}
+    
+    public int[] seq6 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=a; ar[1]=d; ar[2]=b; ar[3]=c; return ar;}
+    
+    //first b
+    public int[] seq7 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=b; ar[1]=c; ar[2]=d; ar[3]=a; return ar;}
+    
+    public int[] seq8 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=b; ar[1]=c; ar[2]=a; ar[3]=d; return ar;}
+    
+    public int[] seq9 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=b; ar[1]=d; ar[2]=c; ar[3]=a; return ar;}
+    
+    public int[] seq10 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=b; ar[1]=d; ar[2]=a; ar[3]=c; return ar;}
+    
+    public int[] seq11 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=b; ar[1]=a; ar[2]=c; ar[3]=d; return ar;}
+    
+    public int[] seq12 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=b; ar[1]=a; ar[2]=d; ar[3]=c; return ar;}
+    
+    //first c
+    public int[] seq13 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=c; ar[1]=d; ar[2]=a; ar[3]=d; return ar;}
+    
+    public int[] seq14 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=c; ar[1]=d; ar[2]=b; ar[3]=a; return ar;}
+    
+    public int[] seq15 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=c; ar[1]=b; ar[2]=d; ar[3]=a; return ar;}
+    
+    public int[] seq16 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=c; ar[1]=b; ar[2]=a; ar[3]=d; return ar;}
+    
+    public int[] seq17 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=c; ar[1]=a; ar[2]=b; ar[3]=d; return ar;}
+    
+    public int[] seq18 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=c; ar[1]=a; ar[2]=d; ar[3]=b; return ar;}
+    
+    //first d
+    public int[] seq19 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=d; ar[1]=a; ar[2]=b; ar[3]=c; return ar;}
+    
+    public int[] seq20 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=d; ar[1]=a; ar[2]=c; ar[3]=b; return ar;}
+    
+    public int[] seq21 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=d; ar[1]=b; ar[2]=a; ar[3]=c; return ar;}
+    
+    public int[] seq22 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=d; ar[1]=b; ar[2]=c; ar[3]=a; return ar;}
+    
+    public int[] seq23 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=d; ar[1]=c; ar[2]=a; ar[3]=b; return ar;}
+    
+    public int[] seq24 (int a, int b, int c, int d){
+        int[] ar = new int[4];
+        ar[0]=d; ar[1]=c; ar[2]=b; ar[3]=a; return ar;}
+        
+        
+        
+        
+        
+    
+    
+    public boolean canBeEqualTo24(int[] nums) {
+        System.out.println(nums[1]);
+        
+        
+        
+        int j=24; 
+        boolean b;
+        
+        
+        
+        if (j==n) {
+            b = true;
+            System.out.println("true");
+        } else {
+            b = false;
+            System.out.println(b);
+           
+        }
+        
+        return b;
+            
+    }
+    
+    
+    // a-combination x_y_z_w
+    public int a1 (int x, int y, int z, int w){return x+y+z+w;}
+    public int a2 (int x, int y, int z, int w){return x+y+z-w;} 
+    public int a3 (int x, int y, int z, int w){return x+y+z*w;}
+    public int a4 (int x, int y, int z, int w){return x+y+z/w;}
+    public int a5 (int x, int y, int z, int w){return x+y-z+w;}
+    public int a6 (int x, int y, int z, int w){return x+y-z-w;} 
+    public int a7 (int x, int y, int z, int w){return x+y-z*w;}
+    public int a8 (int x, int y, int z, int w){return x+y-z/w;}
+    public int a9 (int x, int y, int z, int w){return x+y*z+w;}
+    public int a10(int x, int y, int z, int w){return x+y*z-w;} 
+    public int a11(int x, int y, int z, int w){return x+y*z*w;}
+    public int a12(int x, int y, int z, int w){return x+y*z/w;}
+    public int a13(int x, int y, int z, int w){return x+y/z+w;}
+    public int a14(int x, int y, int z, int w){return x+y/z-w;} 
+    public int a15(int x, int y, int z, int w){return x+y/z*w;}
+    public int a16(int x, int y, int z, int w){return x+y/z/w;}
+    
+    public int a17 (int x, int y, int z, int w){return x-y+z+w;}
+    public int a18 (int x, int y, int z, int w){return x-y+z-w;} 
+    public int a19 (int x, int y, int z, int w){return x-y+z*w;}
+    public int a20 (int x, int y, int z, int w){return x-y+z/w;}
+    public int a21 (int x, int y, int z, int w){return x-y-z+w;}
+    public int a22 (int x, int y, int z, int w){return x-y-z-w;} 
+    public int a23 (int x, int y, int z, int w){return x-y-z*w;}
+    public int a24 (int x, int y, int z, int w){return x-y-z/w;}
+    public int a25 (int x, int y, int z, int w){return x-y*z+w;}
+    public int a26 (int x, int y, int z, int w){return x-y*z-w;}
+    public int a27 (int x, int y, int z, int w){return x-y*z*w;} 
+    public int a28 (int x, int y, int z, int w){return x-y*z/w;}
+    public int a29 (int x, int y, int z, int w){return x-y/z+w;}
+    public int a30 (int x, int y, int z, int w){return x-y/z-w;} 
+    public int a31 (int x, int y, int z, int w){return x-y/z*w;}
+    public int a32 (int x, int y, int z, int w){return x-y/z/w;} 
+    
+    public int a33 (int x, int y, int z, int w){return x*y+z+w;}
+    public int a34 (int x, int y, int z, int w){return x*y+z-w;} 
+    public int a35 (int x, int y, int z, int w){return x*y+z*w;}
+    public int a36 (int x, int y, int z, int w){return x*y+z/w;}
+    public int a37 (int x, int y, int z, int w){return x*y-z+w;}
+    public int a38 (int x, int y, int z, int w){return x*y-z-w;} 
+    public int a39 (int x, int y, int z, int w){return x*y-z*w;}
+    public int a40 (int x, int y, int z, int w){return x*y-z/w;}
+    public int a41 (int x, int y, int z, int w){return x*y*z+w;}
+    public int a42 (int x, int y, int z, int w){return x*y*z-w;} 
+    public int a43 (int x, int y, int z, int w){return x*y*z*w;}
+    public int a44 (int x, int y, int z, int w){return x*y*z/w;}
+    public int a45 (int x, int y, int z, int w){return x*y/z+w;}
+    public int a46 (int x, int y, int z, int w){return x*y/z-w;} 
+    public int a47 (int x, int y, int z, int w){return x*y/z*w;}
+    public int a48 (int x, int y, int z, int w){return x*y/z/w;}
+    
+    public int a49 (int x, int y, int z, int w){return x/y+z+w;}
+    public int a50(int x, int y, int z, int w){return x/y+z-w;} 
+    public int a51 (int x, int y, int z, int w){return x/y+z*w;}
+    public int a52 (int x, int y, int z, int w){return x/y+z/w;}
+    public int a53 (int x, int y, int z, int w){return x/y-z+w;}
+    public int a54 (int x, int y, int z, int w){return x/y-z-w;} 
+    public int a55 (int x, int y, int z, int w){return x/y-z*w;}
+    public int a56 (int x, int y, int z, int w){return x/y-z/w;}
+    public int a57 (int x, int y, int z, int w){return x/y*z+w;}
+    public int a58 (int x, int y, int z, int w){return x/y*z-w;} 
+    public int a59 (int x, int y, int z, int w){return x/y*z*w;}
+    public int a60 (int x, int y, int z, int w){return x/y*z/w;}
+    public int a61 (int x, int y, int z, int w){return x/y/z+w;}
+    public int a62 (int x, int y, int z, int w){return x/y/z-w;} 
+    public int a63 (int x, int y, int z, int w){return x/y/z*w;}
+    public int a64 (int x, int y, int z, int w){return x/y/z/w;}
+    
+    
+    // b-combination x_y_(z_w)
+    public int b1 (int x, int y, int z, int w){return x+y+(z+w);}
+    public int b2 (int x, int y, int z, int w){return x+y+(z-w);} 
+    public int b3 (int x, int y, int z, int w){return x+y+(z*w);}
+    public int b4 (int x, int y, int z, int w){return x+y+(z/w);}
+    public int b5 (int x, int y, int z, int w){return x+y-(z+w);}
+    public int b6 (int x, int y, int z, int w){return x+y-(z-w);} 
+    public int b7 (int x, int y, int z, int w){return x+y-(z*w);}
+    public int b8 (int x, int y, int z, int w){return x+y-(z/w);}
+    public int b9 (int x, int y, int z, int w){return x+y*(z+w);}
+    public int b10 (int x, int y, int z, int w){return x+y*(z-w);} 
+    public int b11 (int x, int y, int z, int w){return x+y*(z*w);}
+    public int b12 (int x, int y, int z, int w){return x+y*(z/w);}
+    public int b13 (int x, int y, int z, int w){return x+y/(z+w);}
+    public int b14 (int x, int y, int z, int w){return x+y/(z-w);} 
+    public int b15 (int x, int y, int z, int w){return x+y/(z*w);}
+    public int b16 (int x, int y, int z, int w){return x+y/(z/w);}
+    
+    public int b17 (int x, int y, int z, int w){return x-y+(z+w);}
+    public int b18 (int x, int y, int z, int w){return x-y+(z-w);} 
+    public int b19 (int x, int y, int z, int w){return x-y+(z*w);}
+    public int b20 (int x, int y, int z, int w){return x-y+(z/w);}
+    public int b21 (int x, int y, int z, int w){return x-y-(z+w);}
+    public int b22 (int x, int y, int z, int w){return x-y-(z-w);} 
+    public int b23 (int x, int y, int z, int w){return x-y-(z*w);}
+    public int b24 (int x, int y, int z, int w){return x-y-(z/w);}
+    public int b25 (int x, int y, int z, int w){return x-y*(z+w);}
+    public int b26 (int x, int y, int z, int w){return x-y*(z-w);} 
+    public int b27 (int x, int y, int z, int w){return x-y*(z*w);}
+    public int b28 (int x, int y, int z, int w){return x-y*(z/w);}
+    public int b29 (int x, int y, int z, int w){return x-y/(z+w);}
+    public int b30 (int x, int y, int z, int w){return x-y/(z-w);} 
+    public int b31 (int x, int y, int z, int w){return x-y/(z*w);}
+    public int b32 (int x, int y, int z, int w){return x-y/(z/w);}
+    
+    public int b33 (int x, int y, int z, int w){return x*y+(z+w);}
+    public int b34 (int x, int y, int z, int w){return x*y+(z-w);} 
+    public int b35 (int x, int y, int z, int w){return x*y+(z*w);}
+    public int b36 (int x, int y, int z, int w){return x*y+(z/w);}
+    public int b37 (int x, int y, int z, int w){return x*y-(z+w);}
+    public int b38 (int x, int y, int z, int w){return x*y-(z-w);} 
+    public int b39 (int x, int y, int z, int w){return x*y-(z*w);}
+    public int b40 (int x, int y, int z, int w){return x*y-(z/w);}
+    public int b41 (int x, int y, int z, int w){return x*y*(z+w);}
+    public int b42 (int x, int y, int z, int w){return x*y*(z-w);} 
+    public int b43 (int x, int y, int z, int w){return x*y*(z*w);}
+    public int b44 (int x, int y, int z, int w){return x*y*(z/w);}
+    public int b45 (int x, int y, int z, int w){return x*y/(z+w);}
+    public int b46 (int x, int y, int z, int w){return x*y/(z-w);} 
+    public int b47 (int x, int y, int z, int w){return x*y/(z*w);}
+    public int b48 (int x, int y, int z, int w){return x*y/(z/w);}
+    
+    public int b49 (int x, int y, int z, int w){return x/y+(z+w);}
+    public int b50 (int x, int y, int z, int w){return x/y+(z-w);} 
+    public int b51 (int x, int y, int z, int w){return x/y+(z*w);}
+    public int b52 (int x, int y, int z, int w){return x/y+(z/w);}
+    public int b53 (int x, int y, int z, int w){return x/y-(z+w);}
+    public int b54 (int x, int y, int z, int w){return x/y-(z-w);} 
+    public int b55 (int x, int y, int z, int w){return x/y-(z*w);}
+    public int b56 (int x, int y, int z, int w){return x/y-(z/w);}
+    public int b57 (int x, int y, int z, int w){return x/y*(z+w);}
+    public int b58 (int x, int y, int z, int w){return x/y*(z-w);} 
+    public int b59 (int x, int y, int z, int w){return x/y*(z*w);}
+    public int b60 (int x, int y, int z, int w){return x/y*(z/w);}
+    public int b61 (int x, int y, int z, int w){return x/y/(z+w);}
+    public int b62 (int x, int y, int z, int w){return x/y/(z-w);} 
+    public int b63 (int x, int y, int z, int w){return x/y/(z*w);}
+    public int b64 (int x, int y, int z, int w){return x/y/(z/w);}
+    
+    
+    // c-combination (x_y)_(z_w)
+    public int c1 (int x, int y, int z, int w){return (x+y)+(z+w);}
+    public int c2 (int x, int y, int z, int w){return (x+y)+(z-w);} 
+    public int c3 (int x, int y, int z, int w){return (x+y)+(z*w);}
+    public int c4 (int x, int y, int z, int w){return (x+y)+(z/w);}
+    public int c5 (int x, int y, int z, int w){return (x+y)-(z+w);}
+    public int c6 (int x, int y, int z, int w){return (x+y)-(z-w);} 
+    public int c7 (int x, int y, int z, int w){return (x+y)-(z*w);}
+    public int c8 (int x, int y, int z, int w){return (x+y)-(z/w);}
+    public int c9 (int x, int y, int z, int w){return (x+y)*(z+w);}
+    public int c10 (int x, int y, int z, int w){return (x+y)*(z-w);} 
+    public int c11 (int x, int y, int z, int w){return (x+y)*(z*w);}
+    public int c12 (int x, int y, int z, int w){return (x+y)*(z/w);}
+    public int c13 (int x, int y, int z, int w){return (x+y)/(z+w);}
+    public int c14 (int x, int y, int z, int w){return (x+y)/(z-w);} 
+    public int c15 (int x, int y, int z, int w){return (x+y)/(z*w);}
+    public int c16 (int x, int y, int z, int w){return (x+y)/(z/w);}
+    
+    public int c17 (int x, int y, int z, int w){return (x-y)+(z+w);}
+    public int c18 (int x, int y, int z, int w){return (x-y)+(z-w);} 
+    public int c19 (int x, int y, int z, int w){return (x-y)+(z*w);}
+    public int c20 (int x, int y, int z, int w){return (x-y)+(z/w);}
+    public int c21 (int x, int y, int z, int w){return (x-y)-(z+w);}
+    public int c22 (int x, int y, int z, int w){return (x-y)-(z-w);} 
+    public int c23 (int x, int y, int z, int w){return (x-y)-(z*w);}
+    public int c24 (int x, int y, int z, int w){return (x-y)-(z/w);}
+    public int c25 (int x, int y, int z, int w){return (x-y)*(z+w);}
+    public int c26 (int x, int y, int z, int w){return (x-y)*(z-w);} 
+    public int c27 (int x, int y, int z, int w){return (x-y)*(z*w);}
+    public int c28 (int x, int y, int z, int w){return (x-y)*(z/w);}
+    public int c29 (int x, int y, int z, int w){return (x-y)/(z+w);}
+    public int c30 (int x, int y, int z, int w){return (x-y)/(z-w);} 
+    public int c31 (int x, int y, int z, int w){return (x-y)/(z*w);}
+    public int c32 (int x, int y, int z, int w){return (x-y)/(z/w);}
+    
+    public int c33 (int x, int y, int z, int w){return (x*y)+(z+w);}
+    public int c34 (int x, int y, int z, int w){return (x*y)+(z-w);} 
+    public int c35 (int x, int y, int z, int w){return (x*y)+(z*w);}
+    public int c36 (int x, int y, int z, int w){return (x*y)+(z/w);}
+    public int c37 (int x, int y, int z, int w){return (x*y)-(z+w);}
+    public int c38 (int x, int y, int z, int w){return (x*y)-(z-w);} 
+    public int c39 (int x, int y, int z, int w){return (x*y)-(z*w);}
+    public int c40 (int x, int y, int z, int w){return (x*y)-(z/w);}
+    public int c41 (int x, int y, int z, int w){return (x*y)*(z+w);}
+    public int c42 (int x, int y, int z, int w){return (x*y)*(z-w);} 
+    public int c43 (int x, int y, int z, int w){return (x*y)*(z*w);}
+    public int c44 (int x, int y, int z, int w){return (x*y)*(z/w);}
+    public int c45 (int x, int y, int z, int w){return (x*y)/(z+w);}
+    public int c46 (int x, int y, int z, int w){return (x*y)/(z-w);} 
+    public int c47 (int x, int y, int z, int w){return (x*y)/(z*w);}
+    public int c48 (int x, int y, int z, int w){return (x*y)/(z/w);}
+    
+    public int c49 (int x, int y, int z, int w){return (x/y)+(z+w);}
+    public int c50 (int x, int y, int z, int w){return (x/y)+(z-w);} 
+    public int c51 (int x, int y, int z, int w){return (x/y)+(z*w);}
+    public int c52 (int x, int y, int z, int w){return (x/y)+(z/w);}
+    public int c53 (int x, int y, int z, int w){return (x/y)-(z+w);}
+    public int c54 (int x, int y, int z, int w){return (x/y)-(z-w);} 
+    public int c55 (int x, int y, int z, int w){return (x/y)-(z*w);}
+    public int c56 (int x, int y, int z, int w){return (x/y)-(z/w);}
+    public int c57 (int x, int y, int z, int w){return (x/y)*(z+w);}
+    public int c58 (int x, int y, int z, int w){return (x/y)*(z-w);} 
+    public int c59 (int x, int y, int z, int w){return (x/y)*(z*w);}
+    public int c60 (int x, int y, int z, int w){return (x/y)*(z/w);}
+    public int c61 (int x, int y, int z, int w){return (x/y)/(z+w);}
+    public int c62 (int x, int y, int z, int w){return (x/y)/(z-w);} 
+    public int c63 (int x, int y, int z, int w){return (x/y)/(z*w);}
+    public int c64 (int x, int y, int z, int w){return (x/y)/(z/w);}
+    
+    
+    // d-combination x_(y_z_w)
+    public int d1 (int x, int y, int z, int w){return x+(y+z+w);}
+    public int d2 (int x, int y, int z, int w){return x+(y+z-w);} 
+    public int d3 (int x, int y, int z, int w){return x+(y+z*w);}
+    public int d4 (int x, int y, int z, int w){return x+(y+z/w);}
+    public int d5 (int x, int y, int z, int w){return x+(y-z+w);}
+    public int d6 (int x, int y, int z, int w){return x+(y-z-w);} 
+    public int d7 (int x, int y, int z, int w){return x+(y-z*w);}
+    public int d8 (int x, int y, int z, int w){return x+(y-z/w);}
+    public int d9 (int x, int y, int z, int w){return x+(y*z+w);}
+    public int d10(int x, int y, int z, int w){return x+(y*z-w);} 
+    public int d11(int x, int y, int z, int w){return x+(y*z*w);}
+    public int d12(int x, int y, int z, int w){return x+(y*z/w);}
+    public int d13(int x, int y, int z, int w){return x+(y/z+w);}
+    public int d14(int x, int y, int z, int w){return x+(y/z-w);} 
+    public int d15(int x, int y, int z, int w){return x+(y/z*w);}
+    public int d16(int x, int y, int z, int w){return x+(y/z/w);}
+   
+    public int d17 (int x, int y, int z, int w){return x-(y+z+w);}
+    public int d18 (int x, int y, int z, int w){return x-(y+z-w);} 
+    public int d19 (int x, int y, int z, int w){return x-(y+z*w);}
+    public int d20 (int x, int y, int z, int w){return x-(y+z/w);}
+    public int d21 (int x, int y, int z, int w){return x-(y-z+w);}
+    public int d22 (int x, int y, int z, int w){return x-(y-z-w);} 
+    public int d23 (int x, int y, int z, int w){return x-(y-z*w);}
+    public int d24 (int x, int y, int z, int w){return x-(y-z/w);}
+    public int d25 (int x, int y, int z, int w){return x-(y*z+w);}
+    public int d26 (int x, int y, int z, int w){return x-(y*z-w);}
+    public int d27 (int x, int y, int z, int w){return x-(y*z*w);} 
+    public int d28 (int x, int y, int z, int w){return x-(y*z/w);}
+    public int d29 (int x, int y, int z, int w){return x-(y/z+w);}
+    public int d30 (int x, int y, int z, int w){return x-(y/z-w);} 
+    public int d31 (int x, int y, int z, int w){return x-(y/z*w);}
+    public int d32 (int x, int y, int z, int w){return x-(y/z/w);} 
+   
+    public int d33 (int x, int y, int z, int w){return x*(y+z+w);}
+    public int d34 (int x, int y, int z, int w){return x*(y+z-w);} 
+    public int d35 (int x, int y, int z, int w){return x*(y+z*w);}
+    public int d36 (int x, int y, int z, int w){return x*(y+z/w);}
+    public int d37 (int x, int y, int z, int w){return x*(y-z+w);}
+    public int d38 (int x, int y, int z, int w){return x*(y-z-w);} 
+    public int d39 (int x, int y, int z, int w){return x*(y-z*w);}
+    public int d40 (int x, int y, int z, int w){return x*(y-z/w);}
+    public int d41 (int x, int y, int z, int w){return x*(y*z+w);}
+    public int d42 (int x, int y, int z, int w){return x*(y*z-w);} 
+    public int d43 (int x, int y, int z, int w){return x*(y*z*w);}
+    public int d44 (int x, int y, int z, int w){return x*(y*z/w);}
+    public int d45 (int x, int y, int z, int w){return x*(y/z+w);}
+    public int d46 (int x, int y, int z, int w){return x*(y/z-w);} 
+    public int d47 (int x, int y, int z, int w){return x*(y/z*w);}
+    public int d48 (int x, int y, int z, int w){return x*(y/z/w);}
+    
+    public int d49 (int x, int y, int z, int w){return x/(y+z+w);}
+    public int d50 (int x, int y, int z, int w){return x/(y+z-w);} 
+    public int d51 (int x, int y, int z, int w){return x/(y+z*w);}
+    public int d52 (int x, int y, int z, int w){return x/(y+z/w);}
+    public int d53 (int x, int y, int z, int w){return x/(y-z+w);}
+    public int d54 (int x, int y, int z, int w){return x/(y-z-w);} 
+    public int d55 (int x, int y, int z, int w){return x/(y-z*w);}
+    public int d56 (int x, int y, int z, int w){return x/(y-z/w);}
+    public int d57 (int x, int y, int z, int w){return x/(y*z+w);}
+    public int d58 (int x, int y, int z, int w){return x/(y*z-w);} 
+    public int d59 (int x, int y, int z, int w){return x/(y*z*w);}
+    public int d60 (int x, int y, int z, int w){return x/(y*z/w);}
+    public int d61 (int x, int y, int z, int w){return x/(y/z+w);}
+    public int d62 (int x, int y, int z, int w){return x/(y/z-w);} 
+    public int d63 (int x, int y, int z, int w){return x/(y/z*w);}
+    public int d64 (int x, int y, int z, int w){return x/(y/z/w);}
+    
+    
+    // e-combination x_(y_(z_w))
+    public int e1 (int x, int y, int z, int w){return x+(y+(z+w));}
+    public int e2 (int x, int y, int z, int w){return x+(y+(z-w));} 
+    public int e3 (int x, int y, int z, int w){return x+(y+(z*w));}
+    public int e4 (int x, int y, int z, int w){return x+(y+(z/w));}
+    public int e5 (int x, int y, int z, int w){return x+(y-(z+w));}
+    public int e6 (int x, int y, int z, int w){return x+(y-(z-w));} 
+    public int e7 (int x, int y, int z, int w){return x+(y-(z*w));}
+    public int e8 (int x, int y, int z, int w){return x+(y-(z/w));}
+    public int e9 (int x, int y, int z, int w){return x+(y*(z+w));}
+    public int e10(int x, int y, int z, int w){return x+(y*(z-w));} 
+    public int e11(int x, int y, int z, int w){return x+(y*(z*w));}
+    public int e12(int x, int y, int z, int w){return x+(y*(z/w));}
+    public int e13(int x, int y, int z, int w){return x+(y/(z+w));}
+    public int e14(int x, int y, int z, int w){return x+(y/(z-w));} 
+    public int e15(int x, int y, int z, int w){return x+(y/(z*w));}
+    public int e16(int x, int y, int z, int w){return x+(y/(z/w));}
+   
+    public int e17 (int x, int y, int z, int w){return x-(y+(z+w));}
+    public int e18 (int x, int y, int z, int w){return x-(y+(z-w));} 
+    public int e19 (int x, int y, int z, int w){return x-(y+(z*w));}
+    public int e20 (int x, int y, int z, int w){return x-(y+(z/w));}
+    public int e21 (int x, int y, int z, int w){return x-(y-(z+w));}
+    public int e22 (int x, int y, int z, int w){return x-(y-(z-w));} 
+    public int e23 (int x, int y, int z, int w){return x-(y-(z*w));}
+    public int e24 (int x, int y, int z, int w){return x-(y-(z/w));}
+    public int e25 (int x, int y, int z, int w){return x-(y*(z+w));}
+    public int e26 (int x, int y, int z, int w){return x-(y*(z-w));}
+    public int e27 (int x, int y, int z, int w){return x-(y*(z*w));} 
+    public int e28 (int x, int y, int z, int w){return x-(y*(z/w));}
+    public int e29 (int x, int y, int z, int w){return x-(y/(z+w));}
+    public int e30 (int x, int y, int z, int w){return x-(y/(z-w));} 
+    public int e31 (int x, int y, int z, int w){return x-(y/(z*w));}
+    public int e32 (int x, int y, int z, int w){return x-(y/(z/w));} 
+   
+    public int e33 (int x, int y, int z, int w){return x*(y+(z+w));}
+    public int e34 (int x, int y, int z, int w){return x*(y+(z-w));} 
+    public int e35 (int x, int y, int z, int w){return x*(y+(z*w));}
+    public int e36 (int x, int y, int z, int w){return x*(y+(z/w));}
+    public int e37 (int x, int y, int z, int w){return x*(y-(z+w));}
+    public int e38 (int x, int y, int z, int w){return x*(y-(z-w));} 
+    public int e39 (int x, int y, int z, int w){return x*(y-(z*w));}
+    public int e40 (int x, int y, int z, int w){return x*(y-(z/w));}
+    public int e41 (int x, int y, int z, int w){return x*(y*(z+w));}
+    public int e42 (int x, int y, int z, int w){return x*(y*(z-w));} 
+    public int e43 (int x, int y, int z, int w){return x*(y*(z*w));}
+    public int e44 (int x, int y, int z, int w){return x*(y*(z/w));}
+    public int e45 (int x, int y, int z, int w){return x*(y/(z+w));}
+    public int e46 (int x, int y, int z, int w){return x*(y/(z-w));} 
+    public int e47 (int x, int y, int z, int w){return x*(y/(z*w));}
+    public int e48 (int x, int y, int z, int w){return x*(y/(z/w));}
+    
+    public int e49 (int x, int y, int z, int w){return x/(y+(z+w));}
+    public int e50 (int x, int y, int z, int w){return x/(y+(z-w));} 
+    public int e51 (int x, int y, int z, int w){return x/(y+(z*w));}
+    public int e52 (int x, int y, int z, int w){return x/(y+(z/w));}
+    public int e53 (int x, int y, int z, int w){return x/(y-(z+w));}
+    public int e54 (int x, int y, int z, int w){return x/(y-(z-w));} 
+    public int e55 (int x, int y, int z, int w){return x/(y-(z*w));}
+    public int e56 (int x, int y, int z, int w){return x/(y-(z/w));}
+    public int e57 (int x, int y, int z, int w){return x/(y*(z+w));}
+    public int e58 (int x, int y, int z, int w){return x/(y*(z-w));} 
+    public int e59 (int x, int y, int z, int w){return x/(y*(z*w));}
+    public int e60 (int x, int y, int z, int w){return x/(y*(z/w));}
+    public int e61 (int x, int y, int z, int w){return x/(y/(z+w));}
+    public int e62 (int x, int y, int z, int w){return x/(y/(z-w));} 
+    public int e63 (int x, int y, int z, int w){return x/(y/(z*w));}
+    public int e64 (int x, int y, int z, int w){return x/(y/(z/w));}
+    
+    
+    
+    
+    
+        
+    
+    
+    
+    
+}
