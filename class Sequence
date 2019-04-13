@@ -1,0 +1,82 @@
+package puzzle;
+
+public class Sequence {
+    
+        //first s[0]
+        
+        public int[] seq1 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[0]; ar[1]=s[1]; ar[2]=s[2]; ar[3]=s[3]; return ar;}
+        
+        public int[] seq2 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[0]; ar[1]=s[1]; ar[2]=s[3]; ar[3]=s[2]; return ar;}
+    
+        public int[] seq3 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[0]; ar[1]=s[2]; ar[2]=s[3]; ar[3]=s[1]; return ar;}
+    
+        public int[] seq4 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[0]; ar[1]=s[2]; ar[2]=s[1]; ar[3]=s[3]; return ar;}
+    
+        public int[] seq5 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[0]; ar[1]=s[3]; ar[2]=s[2]; ar[3]=s[1]; return ar;}
+    
+        public int[] seq6 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[0]; ar[1]=s[3]; ar[2]=s[1]; ar[3]=s[2]; return ar;}
+    
+    //first s[1]
+        public int[] seq7 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[1]; ar[1]=s[2]; ar[2]=s[3]; ar[3]=s[0]; return ar;}
+    
+        public int[] seq8 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[1]; ar[1]=s[2]; ar[2]=s[0]; ar[3]=s[3]; return ar;}
+    
+        public int[] seq9 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[1]; ar[1]=s[3]; ar[2]=s[2]; ar[3]=s[0]; return ar;}
+    
+        public int[] seq10 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[1]; ar[1]=s[3]; ar[2]=s[0]; ar[3]=s[2]; return ar;}
+    
+        public int[] seq11 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[1]; ar[1]=s[0]; ar[2]=s[2]; ar[3]=s[3]; return ar;}
+    
+        public int[] seq12 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[1]; ar[1]=s[0]; ar[2]=s[3]; ar[3]=s[2]; return ar;}
+    
+    //first s[2]
+        public int[] seq13 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[2]; ar[1]=s[3]; ar[2]=s[0]; ar[3]=s[1]; return ar;}
+    
+        public int[] seq14 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[2]; ar[1]=s[3]; ar[2]=s[1]; ar[3]=s[0]; return ar;}
+    
+        public int[] seq15 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[2]; ar[1]=s[1]; ar[2]=s[3]; ar[3]=s[0]; return ar;}
+    
+        public int[] seq16 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[2]; ar[1]=s[1]; ar[2]=s[0]; ar[3]=s[3]; return ar;}
+    
+        public int[] seq17 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[2]; ar[1]=s[0]; ar[2]=s[1]; ar[3]=s[3]; return ar;}
+    
+        public int[] seq18 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[2]; ar[1]=s[0]; ar[2]=s[3]; ar[3]=s[1]; return ar;}
+    
+    //first s[3]
+        public int[] seq19 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[3]; ar[1]=s[0]; ar[2]=s[1]; ar[3]=s[2]; return ar;}
+    
+        public int[] seq20 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[3]; ar[1]=s[0]; ar[2]=s[2]; ar[3]=s[1]; return ar;}
+    
+        public int[] seq21 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[3]; ar[1]=s[1]; ar[2]=s[0]; ar[3]=s[2]; return ar;}
+    
+        public int[] seq22 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[3]; ar[1]=s[1]; ar[2]=s[2]; ar[3]=s[0]; return ar;}
+    
+        public int[] seq23 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[3]; ar[1]=s[2]; ar[2]=s[0]; ar[3]=s[1]; return ar;}
+    
+        public int[] seq24 (int[] s){ int[] ar = new int[4];
+            ar[0]=s[3]; ar[1]=s[2]; ar[2]=s[1]; ar[3]=s[0]; return ar;}
+    
+}
