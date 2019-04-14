@@ -7,11 +7,10 @@ import java.util.Map;
 
 public class Puzzle {
     
-    final int p = 24;
-    static int v;
+    static int p = 24;
     private static int[] arrayNums;
     static boolean b;
-    static String met;
+    
     static String formula;
                 
     public void setNums() {
@@ -28,13 +27,12 @@ public class Puzzle {
         Puzzle s = new Puzzle();
         s.setNums();
         s.canBeEqualTo24(arrayNums);
-        System.out.println(b +" method_"+ met+ " combination_№"+v );
-        System.out.println("formula: "+ formula);
+        System.out.println(b + " "+ formula +"="+p);
+        
     }
     
     public boolean canBeEqualTo24(int[] nums) 
     throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        Puzzle s = new Puzzle();        
         Sequence seq = new Sequence();
         float[] r = new float[4];
             r[0] =  nums[0]; 
@@ -48,9 +46,8 @@ public class Puzzle {
             float[] result = (float[]) m1.invoke(seq, r);
             String MethodName = m1.getName();
             
-            s.all(result);            //method of combination
+            this.all(result);            //method of combination
             if (b==true){
-                met = MethodName;
                 break;
             }
         }
@@ -60,19 +57,362 @@ public class Puzzle {
     }
  
     public boolean all (float[]a){
-        int j = 0;
-        int g = 0;
-        float[] cmb = new float [320];
         
         Map<Integer, String> hashMap = new HashMap<Integer, String>();
-        hashMap.put((int)(a[0]+a[1]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
-        hashMap.put((int)(a[0]+a[2]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
-        hashMap.put((int)(a[0]+a[2]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
-        hashMap.put((int)(a[0]+a[0]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
-        hashMap.put((int)(a[0]+a[3]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
+        
+        
+        
+        // a-combination x_a[1]_a[2]_a[3] 64
+        hashMap.put((int)(a[0]+a[1]+a[2]+a[3]), String.format("%.0f+%.0f+%.0f+%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]+a[2]-a[3]), String.format("%.0f+%.0f+%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]+a[2]*a[3]), String.format("%.0f+%.0f+%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]+a[2]/a[3]), String.format("%.0f+%.0f+%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-a[2]+a[3]), String.format("%.0f+%.0f-%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-a[2]-a[3]), String.format("%.0f+%.0f-%.0f-%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-a[2]*a[3]), String.format("%.0f+%.0f-%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-a[2]/a[3]), String.format("%.0f+%.0f-%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]*a[2]+a[3]), String.format("%.0f+%.0f*%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]*a[2]-a[3]), String.format("%.0f+%.0f*%.0f-%.0f", a[0],a[1],a[2],a[3]));  
+        hashMap.put((int)(a[0]+a[1]*a[2]*a[3]), String.format("%.0f+%.0f*%.0f*%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]*a[2]/a[3]), String.format("%.0f+%.0f*%.0f/%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]/a[2]+a[3]), String.format("%.0f+%.0f/%.0f+%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]/a[2]-a[3]), String.format("%.0f+%.0f/%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]/a[2]*a[3]), String.format("%.0f+%.0f/%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]/a[2]/a[3]), String.format("%.0f+%.0f/%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        
+        hashMap.put((int)(a[0]-a[1]+a[2]+a[3]), String.format("%.0f-%.0f+%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]+a[2]-a[3]), String.format("%.0f-%.0f+%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]+a[2]*a[3]), String.format("%.0f-%.0f+%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]+a[2]/a[3]), String.format("%.0f-%.0f+%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]-a[2]+a[3]), String.format("%.0f-%.0f-%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]-a[2]-a[3]), String.format("%.0f-%.0f-%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]-a[2]*a[3]), String.format("%.0f-%.0f-%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]-a[2]/a[3]), String.format("%.0f-%.0f-%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]*a[2]+a[3]), String.format("%.0f-%.0f*%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]*a[2]-a[3]), String.format("%.0f-%.0f*%.0f-%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]*a[2]*a[3]), String.format("%.0f-%.0f*%.0f*%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]*a[2]/a[3]), String.format("%.0f-%.0f*%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]/a[2]+a[3]), String.format("%.0f-%.0f/%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]/a[2]-a[3]), String.format("%.0f-%.0f/%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]/a[2]*a[3]), String.format("%.0f-%.0f/%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]/a[2]/a[3]), String.format("%.0f-%.0f/%.0f/%.0f", a[0],a[1],a[2],a[3])); 
+        
+        hashMap.put((int)(a[0]*a[1]+a[2]+a[3]), String.format("%.0f*%.0f+%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]+a[2]-a[3]), String.format("%.0f*%.0f+%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]+a[2]*a[3]), String.format("%.0f*%.0f+%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]+a[2]/a[3]), String.format("%.0f*%.0f+%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]-a[2]+a[3]), String.format("%.0f*%.0f-%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]-a[2]-a[3]), String.format("%.0f*%.0f-%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]-a[2]*a[3]), String.format("%.0f*%.0f-%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]-a[2]/a[3]), String.format("%.0f*%.0f-%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]*a[2]+a[3]), String.format("%.0f*%.0f*%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]*a[2]-a[3]), String.format("%.0f*%.0f*%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]*a[2]*a[3]), String.format("%.0f*%.0f*%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]*a[2]/a[3]), String.format("%.0f*%.0f*%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]/a[2]+a[3]), String.format("%.0f*%.0f/%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]/a[2]-a[3]), String.format("%.0f*%.0f/%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]/a[2]*a[3]), String.format("%.0f*%.0f/%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]/a[2]/a[3]), String.format("%.0f*%.0f/%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        
+        hashMap.put((int)(a[0]/a[1]+a[2]+a[3]), String.format("%.0f/%.0f+%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]+a[2]-a[3]), String.format("%.0f/%.0f+%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]+a[2]*a[3]), String.format("%.0f/%.0f+%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]+a[2]/a[3]), String.format("%.0f/%.0f+%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]-a[2]+a[3]), String.format("%.0f/%.0f-%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]-a[2]-a[3]), String.format("%.0f/%.0f-%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]-a[2]*a[3]), String.format("%.0f/%.0f-%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]-a[2]/a[3]), String.format("%.0f/%.0f-%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]*a[2]+a[3]), String.format("%.0f/%.0f*%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]*a[2]-a[3]), String.format("%.0f/%.0f*%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]*a[2]*a[3]), String.format("%.0f/%.0f*%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]*a[2]/a[3]), String.format("%.0f/%.0f*%.0f/%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]/a[2]+a[3]), String.format("%.0f/%.0f/%.0f+%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]/a[2]-a[3]), String.format("%.0f/%.0f/%.0f-%.0f", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]/a[2]*a[3]), String.format("%.0f/%.0f/%.0f*%.0f", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]/a[2]/a[3]), String.format("%.0f/%.0f/%.0f/%.0f", a[0],a[1],a[2],a[3]));
+    
+    
+    // b-combination a[0]_a[1]_(a[2]_a[3])
+        hashMap.put((int)(a[0]+a[1]+(a[2]+a[3])), String.format("%.0f+%.0f+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]+(a[2]-a[3])), String.format("%.0f+%.0f+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]+(a[2]*a[3])), String.format("%.0f+%.0f+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]+(a[2]/a[3])), String.format("%.0f+%.0f+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-(a[2]+a[3])), String.format("%.0f+%.0f-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-(a[2]-a[3])), String.format("%.0f+%.0f-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]-(a[2]*a[3])), String.format("%.0f+%.0f-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]-(a[2]/a[3])), String.format("%.0f+%.0f-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]*(a[2]+a[3])), String.format("%.0f+%.0f*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]*(a[2]-a[3])), String.format("%.0f+%.0f*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]*(a[2]*a[3])), String.format("%.0f+%.0f*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]*(a[2]/a[3])), String.format("%.0f+%.0f*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]/(a[2]+a[3])), String.format("%.0f+%.0f/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]/(a[2]-a[3])), String.format("%.0f+%.0f/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+a[1]/(a[2]*a[3])), String.format("%.0f+%.0f/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+a[1]/(a[2]/a[3])), String.format("%.0f+%.0f/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)(a[0]-a[1]+(a[2]+a[3])), String.format("%.0f-%.0f+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]+(a[2]-a[3])), String.format("%.0f-%.0f+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]+(a[2]*a[3])), String.format("%.0f-%.0f+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]+(a[2]/a[3])), String.format("%.0f-%.0f+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]-(a[2]+a[3])), String.format("%.0f-%.0f-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]-(a[2]-a[3])), String.format("%.0f-%.0f-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]-(a[2]*a[3])), String.format("%.0f-%.0f-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]-(a[2]/a[3])), String.format("%.0f-%.0f-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]*(a[2]+a[3])), String.format("%.0f-%.0f*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]*(a[2]-a[3])), String.format("%.0f-%.0f*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]*(a[2]*a[3])), String.format("%.0f-%.0f*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]*(a[2]/a[3])), String.format("%.0f-%.0f*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]/(a[2]+a[3])), String.format("%.0f-%.0f/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]/(a[2]-a[3])), String.format("%.0f-%.0f/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-a[1]/(a[2]*a[3])), String.format("%.0f-%.0f/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-a[1]/(a[2]/a[3])), String.format("%.0f-%.0f/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)(a[0]*a[1]+(a[2]+a[3])), String.format("%.0f*%.0f+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]+(a[2]-a[3])), String.format("%.0f*%.0f+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]+(a[2]*a[3])), String.format("%.0f*%.0f+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]+(a[2]/a[3])), String.format("%.0f*%.0f+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]-(a[2]+a[3])), String.format("%.0f*%.0f-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]-(a[2]-a[3])), String.format("%.0f*%.0f-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]-(a[2]*a[3])), String.format("%.0f*%.0f-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]-(a[2]/a[3])), String.format("%.0f*%.0f-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]*(a[2]+a[3])), String.format("%.0f*%.0f*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]*(a[2]-a[3])), String.format("%.0f*%.0f*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]*(a[2]*a[3])), String.format("%.0f*%.0f*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]*(a[2]/a[3])), String.format("%.0f*%.0f*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]/(a[2]+a[3])), String.format("%.0f*%.0f/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]/(a[2]-a[3])), String.format("%.0f*%.0f/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*a[1]/(a[2]*a[3])), String.format("%.0f*%.0f/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*a[1]/(a[2]/a[3])), String.format("%.0f*%.0f/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)(a[0]/a[1]+(a[2]+a[3])), String.format("%.0f/%.0f+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]+(a[2]-a[3])), String.format("%.0f/%.0f+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]+(a[2]*a[3])), String.format("%.0f/%.0f+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]+(a[2]/a[3])), String.format("%.0f/%.0f+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]-(a[2]+a[3])), String.format("%.0f/%.0f-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]-(a[2]-a[3])), String.format("%.0f/%.0f-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]-(a[2]*a[3])), String.format("%.0f/%.0f-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]-(a[2]/a[3])), String.format("%.0f/%.0f-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]*(a[2]+a[3])), String.format("%.0f/%.0f*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]*(a[2]-a[3])), String.format("%.0f/%.0f*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]*(a[2]*a[3])), String.format("%.0f/%.0f*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]*(a[2]/a[3])), String.format("%.0f/%.0f*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]/(a[2]+a[3])), String.format("%.0f/%.0f/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]/(a[2]-a[3])), String.format("%.0f/%.0f/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/a[1]/(a[2]*a[3])), String.format("%.0f/%.0f/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/a[1]/(a[2]/a[3])), String.format("%.0f/%.0f/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+    
+    // c-combination (a[0]_a[1])_(a[2]_a[3])
+        hashMap.put((int)((a[0]+a[1])+(a[2]+a[3])), String.format("(%.0f+%.0f)+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])+(a[2]-a[3])), String.format("(%.0f+%.0f)+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]+a[1])+(a[2]*a[3])), String.format("(%.0f+%.0f)+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])+(a[2]/a[3])), String.format("(%.0f+%.0f)+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])-(a[2]+a[3])), String.format("(%.0f+%.0f)-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])-(a[2]-a[3])), String.format("(%.0f+%.0f)-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]+a[1])-(a[2]*a[3])), String.format("(%.0f+%.0f)-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])-(a[2]/a[3])), String.format("(%.0f+%.0f)-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])*(a[2]+a[3])), String.format("(%.0f+%.0f)*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])*(a[2]-a[3])), String.format("(%.0f+%.0f)*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]+a[1])*(a[2]*a[3])), String.format("(%.0f+%.0f)*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])*(a[2]/a[3])), String.format("(%.0f+%.0f)*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])/(a[2]+a[3])), String.format("(%.0f+%.0f)/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])/(a[2]-a[3])), String.format("(%.0f+%.0f)/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]+a[1])/(a[2]*a[3])), String.format("(%.0f+%.0f)/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]+a[1])/(a[2]/a[3])), String.format("(%.0f+%.0f)/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)((a[0]-a[1])+(a[2]+a[3])), String.format("(%.0f-%.0f)+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])+(a[2]-a[3])), String.format("(%.0f-%.0f)+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]-a[1])+(a[2]*a[3])), String.format("(%.0f-%.0f)+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])+(a[2]/a[3])), String.format("(%.0f-%.0f)+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])-(a[2]+a[3])), String.format("(%.0f-%.0f)-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])-(a[2]-a[3])), String.format("(%.0f-%.0f)-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]-a[1])-(a[2]*a[3])), String.format("(%.0f-%.0f)-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])-(a[2]/a[3])), String.format("(%.0f-%.0f)-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])*(a[2]+a[3])), String.format("(%.0f-%.0f)*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])*(a[2]-a[3])), String.format("(%.0f-%.0f)*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]-a[1])*(a[2]*a[3])), String.format("(%.0f-%.0f)*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])*(a[2]/a[3])), String.format("(%.0f-%.0f)*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])/(a[2]+a[3])), String.format("(%.0f-%.0f)/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])/(a[2]-a[3])), String.format("(%.0f-%.0f)/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]-a[1])/(a[2]*a[3])), String.format("(%.0f-%.0f)/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]-a[1])/(a[2]/a[3])), String.format("(%.0f-%.0f)/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)((a[0]*a[1])+(a[2]+a[3])), String.format("(%.0f*%.0f)+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])+(a[2]-a[3])), String.format("(%.0f*%.0f)+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]*a[1])+(a[2]*a[3])), String.format("(%.0f*%.0f)+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])+(a[2]/a[3])), String.format("(%.0f*%.0f)+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])-(a[2]+a[3])), String.format("(%.0f*%.0f)-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])-(a[2]-a[3])), String.format("(%.0f*%.0f)-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]*a[1])-(a[2]*a[3])), String.format("(%.0f*%.0f)-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])-(a[2]/a[3])), String.format("(%.0f*%.0f)-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])*(a[2]+a[3])), String.format("(%.0f*%.0f)*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])*(a[2]-a[3])), String.format("(%.0f*%.0f)*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]*a[1])*(a[2]*a[3])), String.format("(%.0f*%.0f)*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])*(a[2]/a[3])), String.format("(%.0f*%.0f)*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])/(a[2]+a[3])), String.format("(%.0f*%.0f)/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])/(a[2]-a[3])), String.format("(%.0f*%.0f)/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]*a[1])/(a[2]*a[3])), String.format("(%.0f*%.0f)/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]*a[1])/(a[2]/a[3])), String.format("(%.0f*%.0f)/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)((a[0]/a[1])+(a[2]+a[3])), String.format("(%.0f/%.0f)+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])+(a[2]-a[3])), String.format("(%.0f/%.0f)+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]/a[1])+(a[2]*a[3])), String.format("(%.0f/%.0f)+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])+(a[2]/a[3])), String.format("(%.0f/%.0f)+(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])-(a[2]+a[3])), String.format("(%.0f/%.0f)-(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])-(a[2]-a[3])), String.format("(%.0f/%.0f)-(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]/a[1])-(a[2]*a[3])), String.format("(%.0f/%.0f)-(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])-(a[2]/a[3])), String.format("(%.0f/%.0f)-(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])*(a[2]+a[3])), String.format("(%.0f/%.0f)*(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])*(a[2]-a[3])), String.format("(%.0f/%.0f)*(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]/a[1])*(a[2]*a[3])), String.format("(%.0f/%.0f)*(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])*(a[2]/a[3])), String.format("(%.0f/%.0f)*(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])/(a[2]+a[3])), String.format("(%.0f/%.0f)/(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])/(a[2]-a[3])), String.format("(%.0f/%.0f)/(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)((a[0]/a[1])/(a[2]*a[3])), String.format("(%.0f/%.0f)/(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)((a[0]/a[1])/(a[2]/a[3])), String.format("(%.0f/%.0f)/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+    
+    // d-combination a[0]_(a[1]_a[2]_a[3])
+        hashMap.put((int)(a[0]+(a[1]+a[2]+a[3])), String.format("%.0f+(%.0f+%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]+a[2]-a[3])), String.format("%.0f+(%.0f+%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]+a[2]*a[3])), String.format("%.0f+(%.0f+%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]+a[2]/a[3])), String.format("%.0f+(%.0f+%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]-a[2]+a[3])), String.format("%.0f+(%.0f-%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]-a[2]-a[3])), String.format("%.0f+(%.0f-%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]-a[2]*a[3])), String.format("%.0f+(%.0f-%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]-a[2]/a[3])), String.format("%.0f+(%.0f-%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]*a[2]+a[3])), String.format("%.0f+(%.0f*%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]*a[2]-a[3])), String.format("%.0f+(%.0f*%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]*a[2]*a[3])), String.format("%.0f+(%.0f*%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]*a[2]/a[3])), String.format("%.0f+(%.0f*%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]/a[2]+a[3])), String.format("%.0f+(%.0f/%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]/a[2]-a[3])), String.format("%.0f+(%.0f/%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]/a[2]*a[3])), String.format("%.0f+(%.0f/%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]/a[2]/a[3])), String.format("%.0f+(%.0f/%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+   
+        hashMap.put((int)(a[0]-(a[1]+a[2]+a[3])), String.format("%.0f-(%.0f+%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]+a[2]-a[3])), String.format("%.0f-(%.0f+%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]+a[2]*a[3])), String.format("%.0f-(%.0f+%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]+a[2]/a[3])), String.format("%.0f-(%.0f+%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]-a[2]+a[3])), String.format("%.0f-(%.0f-%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]-a[2]-a[3])), String.format("%.0f-(%.0f-%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]-a[2]*a[3])), String.format("%.0f-(%.0f-%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]-a[2]/a[3])), String.format("%.0f-(%.0f-%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]*a[2]+a[3])), String.format("%.0f-(%.0f*%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]*a[2]-a[3])), String.format("%.0f-(%.0f*%.0f-%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]*a[2]*a[3])), String.format("%.0f-(%.0f*%.0f*%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]*a[2]/a[3])), String.format("%.0f-(%.0f*%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]/a[2]+a[3])), String.format("%.0f-(%.0f/%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]/a[2]-a[3])), String.format("%.0f-(%.0f/%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]/a[2]*a[3])), String.format("%.0f-(%.0f/%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]/a[2]/a[3])), String.format("%.0f-(%.0f/%.0f/%.0f)", a[0],a[1],a[2],a[3])); 
+   
+        hashMap.put((int)(a[0]*(a[1]+a[2]+a[3])), String.format("%.0f*(%.0f+%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]+a[2]-a[3])), String.format("%.0f*(%.0f+%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]+a[2]*a[3])), String.format("%.0f*(%.0f+%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]+a[2]/a[3])), String.format("%.0f*(%.0f+%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]-a[2]+a[3])), String.format("%.0f*(%.0f-%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]-a[2]-a[3])), String.format("%.0f*(%.0f-%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]-a[2]*a[3])), String.format("%.0f*(%.0f-%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]-a[2]/a[3])), String.format("%.0f*(%.0f-%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]*a[2]+a[3])), String.format("%.0f*(%.0f*%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]*a[2]-a[3])), String.format("%.0f*(%.0f*%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]*a[2]*a[3])), String.format("%.0f*(%.0f*%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]*a[2]/a[3])), String.format("%.0f*(%.0f*%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]/a[2]+a[3])), String.format("%.0f*(%.0f/%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]/a[2]-a[3])), String.format("%.0f*(%.0f/%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]/a[2]*a[3])), String.format("%.0f*(%.0f/%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]/a[2]/a[3])), String.format("%.0f*(%.0f/%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)(a[0]/(a[1]+a[2]+a[3])), String.format("%.0f/(%.0f+%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]+a[2]-a[3])), String.format("%.0f/(%.0f+%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]+a[2]*a[3])), String.format("%.0f/(%.0f+%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]+a[2]/a[3])), String.format("%.0f/(%.0f+%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]-a[2]+a[3])), String.format("%.0f/(%.0f-%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]-a[2]-a[3])), String.format("%.0f/(%.0f-%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]-a[2]*a[3])), String.format("%.0f/(%.0f-%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]-a[2]/a[3])), String.format("%.0f/(%.0f-%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]*a[2]+a[3])), String.format("%.0f/(%.0f*%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]*a[2]-a[3])), String.format("%.0f/(%.0f*%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]*a[2]*a[3])), String.format("%.0f/(%.0f*%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]*a[2]/a[3])), String.format("%.0f/(%.0f*%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]/a[2]+a[3])), String.format("%.0f/(%.0f/%.0f+%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]/a[2]-a[3])), String.format("%.0f/(%.0f/%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]/a[2]*a[3])), String.format("%.0f/(%.0f/%.0f*%.0f)", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]/a[2]/a[3])), String.format("%.0f/(%.0f/%.0f/%.0f)", a[0],a[1],a[2],a[3]));
+    
+    
+    // e-combination a[0]_(a[1]_(a[2]_a[3]))
+        hashMap.put((int)(a[0]+(a[1]+(a[2]+a[3]))), String.format("%.0f+(%.0f+(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]+(a[2]-a[3]))), String.format("%.0f+(%.0f+(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]+(a[2]*a[3]))), String.format("%.0f+(%.0f+(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]+(a[2]/a[3]))), String.format("%.0f+(%.0f+(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]-(a[2]+a[3]))), String.format("%.0f+(%.0f-(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]-(a[2]-a[3]))), String.format("%.0f+(%.0f-(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]-(a[2]*a[3]))), String.format("%.0f+(%.0f-(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]-(a[2]/a[3]))), String.format("%.0f+(%.0f-(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]*(a[2]+a[3]))), String.format("%.0f+(%.0f*(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]*(a[2]-a[3]))), String.format("%.0f+(%.0f*(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]*(a[2]*a[3]))), String.format("%.0f+(%.0f*(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]*(a[2]/a[3]))), String.format("%.0f+(%.0f*(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]/(a[2]+a[3]))), String.format("%.0f+(%.0f/(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]/(a[2]-a[3]))), String.format("%.0f+(%.0f/(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]+(a[1]/(a[2]*a[3]))), String.format("%.0f+(%.0f/(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]+(a[1]/(a[2]/a[3]))), String.format("%.0f+(%.0f/(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+   
+        hashMap.put((int)(a[0]-(a[1]+(a[2]+a[3]))), String.format("%.0f-(%.0f+(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]+(a[2]-a[3]))), String.format("%.0f-(%.0f+(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]+(a[2]*a[3]))), String.format("%.0f-(%.0f+(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]+(a[2]/a[3]))), String.format("%.0f-(%.0f+(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]-(a[2]+a[3]))), String.format("%.0f-(%.0f-(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]-(a[2]-a[3]))), String.format("%.0f-(%.0f-(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]-(a[2]*a[3]))), String.format("%.0f-(%.0f-(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]-(a[2]/a[3]))), String.format("%.0f-(%.0f-(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]*(a[2]+a[3]))), String.format("%.0f-(%.0f*(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]*(a[2]-a[3]))), String.format("%.0f-(%.0f*(%.0f-%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]*(a[2]*a[3]))), String.format("%.0f-(%.0f*(%.0f*%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]*(a[2]/a[3]))), String.format("%.0f-(%.0f*(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]/(a[2]+a[3]))), String.format("%.0f-(%.0f/(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]/(a[2]-a[3]))), String.format("%.0f-(%.0f/(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]-(a[1]/(a[2]*a[3]))), String.format("%.0f-(%.0f/(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]-(a[1]/(a[2]/a[3]))), String.format("%.0f-(%.0f/(%.0f/%.0f))", a[0],a[1],a[2],a[3])); 
+   
+        hashMap.put((int)(a[0]*(a[1]+(a[2]+a[3]))), String.format("%.0f*(%.0f+(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]+(a[2]-a[3]))), String.format("%.0f*(%.0f+(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]+(a[2]*a[3]))), String.format("%.0f*(%.0f+(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]+(a[2]/a[3]))), String.format("%.0f*(%.0f+(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]-(a[2]+a[3]))), String.format("%.0f*(%.0f-(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]-(a[2]-a[3]))), String.format("%.0f*(%.0f-(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]-(a[2]*a[3]))), String.format("%.0f*(%.0f-(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]-(a[2]/a[3]))), String.format("%.0f*(%.0f-(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]*(a[2]+a[3]))), String.format("%.0f*(%.0f*(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]*(a[2]-a[3]))), String.format("%.0f*(%.0f*(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]*(a[2]*a[3]))), String.format("%.0f*(%.0f*(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]*(a[2]/a[3]))), String.format("%.0f*(%.0f*(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]/(a[2]+a[3]))), String.format("%.0f*(%.0f/(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]/(a[2]-a[3]))), String.format("%.0f*(%.0f/(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]*(a[1]/(a[2]*a[3]))), String.format("%.0f*(%.0f/(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]*(a[1]/(a[2]/a[3]))), String.format("%.0f*(%.0f/(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+    
+        hashMap.put((int)(a[0]/(a[1]+(a[2]+a[3]))), String.format("%.0f/(%.0f+(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]+(a[2]-a[3]))), String.format("%.0f/(%.0f+(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]+(a[2]*a[3]))), String.format("%.0f/(%.0f+(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]+(a[2]/a[3]))), String.format("%.0f/(%.0f+(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]-(a[2]+a[3]))), String.format("%.0f/(%.0f-(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]-(a[2]-a[3]))), String.format("%.0f/(%.0f-(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]-(a[2]*a[3]))), String.format("%.0f/(%.0f-(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]-(a[2]/a[3]))), String.format("%.0f/(%.0f-(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]*(a[2]+a[3]))), String.format("%.0f/(%.0f*(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]*(a[2]-a[3]))), String.format("%.0f/(%.0f*(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]*(a[2]*a[3]))), String.format("%.0f/(%.0f*(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]*(a[2]/a[3]))), String.format("%.0f/(%.0f*(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]/(a[2]+a[3]))), String.format("%.0f/(%.0f/(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]/(a[2]-a[3]))), String.format("%.0f/(%.0f/(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
+        hashMap.put((int)(a[0]/(a[1]/(a[2]*a[3]))), String.format("%.0f/(%.0f/(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
+        hashMap.put((int)(a[0]/(a[1]/(a[2]/a[3]))), String.format("%.0f/(%.0f/(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
         
         for (Integer key : hashMap.keySet()) {
-            if (key>2) {
+            if (key==p) {
                 b = true;
                 formula = hashMap.get(key);
                 break;
@@ -81,364 +421,7 @@ public class Puzzle {
             }
             
         }
-        
-        // a-combination x_a[1]_a[2]_a[3] 64
-        cmb[j++]= a[0]+a[1]+a[2]+a[3];
-        cmb[j++]= a[0]+a[1]+a[2]-a[3]; 
-        cmb[j++]= a[0]+a[1]+a[2]*a[3];
-        cmb[j++]= a[0]+a[1]+a[2]/a[3];
-        cmb[j++]= a[0]+a[1]-a[2]+a[3];
-        cmb[j++]= a[0]+a[1]-a[2]-a[3]; 
-        cmb[j++]= a[0]+a[1]-a[2]*a[3];
-        cmb[j++]= a[0]+a[1]-a[2]/a[3];
-        cmb[j++]= a[0]+a[1]*a[2]+a[3];
-        cmb[j++]= a[0]+a[1]*a[2]-a[3]; 
-        cmb[j++]= a[0]+a[1]*a[2]*a[3];
-        cmb[j++]= a[0]+a[1]*a[2]/a[3];
-        cmb[j++]= a[0]+a[1]/a[2]+a[3];
-        cmb[j++]= a[0]+a[1]/a[2]-a[3]; 
-        cmb[j++]= a[0]+a[1]/a[2]*a[3];
-        cmb[j++]= a[0]+a[1]/a[2]/a[3];
-        
-        cmb[j++]= a[0]-a[1]+a[2]+a[3];
-        cmb[j++]= a[0]-a[1]+a[2]-a[3]; 
-        cmb[j++]= a[0]-a[1]+a[2]*a[3];
-        cmb[j++]= a[0]-a[1]+a[2]/a[3];
-        cmb[j++]= a[0]-a[1]-a[2]+a[3];
-        cmb[j++]= a[0]-a[1]-a[2]-a[3]; 
-        cmb[j++]= a[0]-a[1]-a[2]*a[3];
-        cmb[j++]= a[0]-a[1]-a[2]/a[3];
-        cmb[j++]= a[0]-a[1]*a[2]+a[3];
-        cmb[j++]= a[0]-a[1]*a[2]-a[3];
-        cmb[j++]= a[0]-a[1]*a[2]*a[3]; 
-        cmb[j++]= a[0]-a[1]*a[2]/a[3];
-        cmb[j++]= a[0]-a[1]/a[2]+a[3];
-        cmb[j++]= a[0]-a[1]/a[2]-a[3]; 
-        cmb[j++]= a[0]-a[1]/a[2]*a[3];
-        cmb[j++]= a[0]-a[1]/a[2]/a[3]; 
-        
-        cmb[j++]= a[0]*a[1]+a[2]+a[3];
-        cmb[j++]= a[0]*a[1]+a[2]-a[3]; 
-        cmb[j++]= a[0]*a[1]+a[2]*a[3];
-        cmb[j++]= a[0]*a[1]+a[2]/a[3];
-        cmb[j++]= a[0]*a[1]-a[2]+a[3];
-        cmb[j++]= a[0]*a[1]-a[2]-a[3]; 
-        cmb[j++]= a[0]*a[1]-a[2]*a[3];
-        cmb[j++]= a[0]*a[1]-a[2]/a[3];
-        cmb[j++]= a[0]*a[1]*a[2]+a[3];
-        cmb[j++]= a[0]*a[1]*a[2]-a[3]; 
-        cmb[j++]= a[0]*a[1]*a[2]*a[3];
-        cmb[j++]= a[0]*a[1]*a[2]/a[3];
-        cmb[j++]= a[0]*a[1]/a[2]+a[3];
-        cmb[j++]= a[0]*a[1]/a[2]-a[3]; 
-        cmb[j++]= a[0]*a[1]/a[2]*a[3];
-        cmb[j++]= a[0]*a[1]/a[2]/a[3];
-        
-        cmb[j++]= a[0]/a[1]+a[2]+a[3];
-        cmb[j++]= a[0]/a[1]+a[2]-a[3]; 
-        cmb[j++]= a[0]/a[1]+a[2]*a[3];
-        cmb[j++]= a[0]/a[1]+a[2]/a[3];
-        cmb[j++]= a[0]/a[1]-a[2]+a[3];
-        cmb[j++]= a[0]/a[1]-a[2]-a[3]; 
-        cmb[j++]= a[0]/a[1]-a[2]*a[3];
-        cmb[j++]= a[0]/a[1]-a[2]/a[3];
-        cmb[j++]= a[0]/a[1]*a[2]+a[3];
-        cmb[j++]= a[0]/a[1]*a[2]-a[3]; 
-        cmb[j++]= a[0]/a[1]*a[2]*a[3];
-        cmb[j++]= a[0]/a[1]*a[2]/a[3];
-        cmb[j++]= a[0]/a[1]/a[2]+a[3];
-        cmb[j++]= a[0]/a[1]/a[2]-a[3]; 
-        cmb[j++]= a[0]/a[1]/a[2]*a[3];
-        cmb[j++]= a[0]/a[1]/a[2]/a[3];
-    
-    
-    // b-combination a[0]_a[1]_(a[2]_a[3])
-        cmb[j++]= a[0]+a[1]+(a[2]+a[3]);
-        cmb[j++]= a[0]+a[1]+(a[2]-a[3]); 
-        cmb[j++]= a[0]+a[1]+(a[2]*a[3]);
-        cmb[j++]= a[0]+a[1]+(a[2]/a[3]);
-        cmb[j++]= a[0]+a[1]-(a[2]+a[3]);
-        cmb[j++]= a[0]+a[1]-(a[2]-a[3]); 
-        cmb[j++]= a[0]+a[1]-(a[2]*a[3]);
-        cmb[j++]= a[0]+a[1]-(a[2]/a[3]);
-        cmb[j++]= a[0]+a[1]*(a[2]+a[3]);
-        cmb[j++]= a[0]+a[1]*(a[2]-a[3]); 
-        cmb[j++]= a[0]+a[1]*(a[2]*a[3]);
-        cmb[j++]= a[0]+a[1]*(a[2]/a[3]);
-        cmb[j++]= a[0]+a[1]/(a[2]+a[3]);
-        cmb[j++]= a[0]+a[1]/(a[2]-a[3]); 
-        cmb[j++]= a[0]+a[1]/(a[2]*a[3]);
-        cmb[j++]= a[0]+a[1]/(a[2]/a[3]);
-    
-        cmb[j++]= a[0]-a[1]+(a[2]+a[3]);
-        cmb[j++]= a[0]-a[1]+(a[2]-a[3]); 
-        cmb[j++]= a[0]-a[1]+(a[2]*a[3]);
-        cmb[j++]= a[0]-a[1]+(a[2]/a[3]);
-        cmb[j++]= a[0]-a[1]-(a[2]+a[3]);
-        cmb[j++]= a[0]-a[1]-(a[2]-a[3]); 
-        cmb[j++]= a[0]-a[1]-(a[2]*a[3]);
-        cmb[j++]= a[0]-a[1]-(a[2]/a[3]);
-        cmb[j++]= a[0]-a[1]*(a[2]+a[3]);
-        cmb[j++]= a[0]-a[1]*(a[2]-a[3]); 
-        cmb[j++]= a[0]-a[1]*(a[2]*a[3]);
-        cmb[j++]= a[0]-a[1]*(a[2]/a[3]);
-        cmb[j++]= a[0]-a[1]/(a[2]+a[3]);
-        cmb[j++]= a[0]-a[1]/(a[2]-a[3]); 
-        cmb[j++]= a[0]-a[1]/(a[2]*a[3]);
-        cmb[j++]= a[0]-a[1]/(a[2]/a[3]);
-    
-        cmb[j++]= a[0]*a[1]+(a[2]+a[3]);
-        cmb[j++]= a[0]*a[1]+(a[2]-a[3]); 
-        cmb[j++]= a[0]*a[1]+(a[2]*a[3]);
-        cmb[j++]= a[0]*a[1]+(a[2]/a[3]);
-        cmb[j++]= a[0]*a[1]-(a[2]+a[3]);
-        cmb[j++]= a[0]*a[1]-(a[2]-a[3]); 
-        cmb[j++]= a[0]*a[1]-(a[2]*a[3]);
-        cmb[j++]= a[0]*a[1]-(a[2]/a[3]);
-        cmb[j++]= a[0]*a[1]*(a[2]+a[3]);
-        cmb[j++]= a[0]*a[1]*(a[2]-a[3]); 
-        cmb[j++]= a[0]*a[1]*(a[2]*a[3]);
-        cmb[j++]= a[0]*a[1]*(a[2]/a[3]);
-        cmb[j++]= a[0]*a[1]/(a[2]+a[3]);
-        cmb[j++]= a[0]*a[1]/(a[2]-a[3]); 
-        cmb[j++]= a[0]*a[1]/(a[2]*a[3]);
-        cmb[j++]= a[0]*a[1]/(a[2]/a[3]);
-    
-        cmb[j++]= a[0]/a[1]+(a[2]+a[3]);
-        cmb[j++]= a[0]/a[1]+(a[2]-a[3]); 
-        cmb[j++]= a[0]/a[1]+(a[2]*a[3]);
-        cmb[j++]= a[0]/a[1]+(a[2]/a[3]);
-        cmb[j++]= a[0]/a[1]-(a[2]+a[3]);
-        cmb[j++]= a[0]/a[1]-(a[2]-a[3]); 
-        cmb[j++]= a[0]/a[1]-(a[2]*a[3]);
-        cmb[j++]= a[0]/a[1]-(a[2]/a[3]);
-        cmb[j++]= a[0]/a[1]*(a[2]+a[3]);
-        cmb[j++]= a[0]/a[1]*(a[2]-a[3]); 
-        cmb[j++]= a[0]/a[1]*(a[2]*a[3]);
-        cmb[j++]= a[0]/a[1]*(a[2]/a[3]);
-        cmb[j++]= a[0]/a[1]/(a[2]+a[3]);
-        cmb[j++]= a[0]/a[1]/(a[2]-a[3]); 
-        cmb[j++]= a[0]/a[1]/(a[2]*a[3]);
-        cmb[j++]= a[0]/a[1]/(a[2]/a[3]);
-    
-    
-    // c-combination (a[0]_a[1])_(a[2]_a[3])
-        cmb[j++]= (a[0]+a[1])+(a[2]+a[3]);
-        cmb[j++]= (a[0]+a[1])+(a[2]-a[3]); 
-        cmb[j++]= (a[0]+a[1])+(a[2]*a[3]);
-        cmb[j++]= (a[0]+a[1])+(a[2]/a[3]);
-        cmb[j++]= (a[0]+a[1])-(a[2]+a[3]);
-        cmb[j++]= (a[0]+a[1])-(a[2]-a[3]); 
-        cmb[j++]= (a[0]+a[1])-(a[2]*a[3]);
-        cmb[j++]= (a[0]+a[1])-(a[2]/a[3]);
-        cmb[j++]= (a[0]+a[1])*(a[2]+a[3]);
-        cmb[j++]= (a[0]+a[1])*(a[2]-a[3]); 
-        cmb[j++]= (a[0]+a[1])*(a[2]*a[3]);
-        cmb[j++]= (a[0]+a[1])*(a[2]/a[3]);
-        cmb[j++]= (a[0]+a[1])/(a[2]+a[3]);
-        cmb[j++]= (a[0]+a[1])/(a[2]-a[3]); 
-        cmb[j++]= (a[0]+a[1])/(a[2]*a[3]);
-        cmb[j++]= (a[0]+a[1])/(a[2]/a[3]);
-    
-        cmb[j++]= (a[0]-a[1])+(a[2]+a[3]);
-        cmb[j++]= (a[0]-a[1])+(a[2]-a[3]); 
-        cmb[j++]= (a[0]-a[1])+(a[2]*a[3]);
-        cmb[j++]= (a[0]-a[1])+(a[2]/a[3]);
-        cmb[j++]= (a[0]-a[1])-(a[2]+a[3]);
-        cmb[j++]= (a[0]-a[1])-(a[2]-a[3]); 
-        cmb[j++]= (a[0]-a[1])-(a[2]*a[3]);
-        cmb[j++]= (a[0]-a[1])-(a[2]/a[3]);
-        cmb[j++]= (a[0]-a[1])*(a[2]+a[3]);
-        cmb[j++]= (a[0]-a[1])*(a[2]-a[3]); 
-        cmb[j++]= (a[0]-a[1])*(a[2]*a[3]);
-        cmb[j++]= (a[0]-a[1])*(a[2]/a[3]);
-        cmb[j++]= (a[0]-a[1])/(a[2]+a[3]);
-        cmb[j++]= (a[0]-a[1])/(a[2]-a[3]); 
-        cmb[j++]= (a[0]-a[1])/(a[2]*a[3]);
-        cmb[j++]= (a[0]-a[1])/(a[2]/a[3]);
-    
-        cmb[j++]= (a[0]*a[1])+(a[2]+a[3]);
-        cmb[j++]= (a[0]*a[1])+(a[2]-a[3]); 
-        cmb[j++]= (a[0]*a[1])+(a[2]*a[3]);
-        cmb[j++]= (a[0]*a[1])+(a[2]/a[3]);
-        cmb[j++]= (a[0]*a[1])-(a[2]+a[3]);
-        cmb[j++]= (a[0]*a[1])-(a[2]-a[3]); 
-        cmb[j++]= (a[0]*a[1])-(a[2]*a[3]);
-        cmb[j++]= (a[0]*a[1])-(a[2]/a[3]);
-        cmb[j++]= (a[0]*a[1])*(a[2]+a[3]);
-        cmb[j++]= (a[0]*a[1])*(a[2]-a[3]); 
-        cmb[j++]= (a[0]*a[1])*(a[2]*a[3]);
-        cmb[j++]= (a[0]*a[1])*(a[2]/a[3]);
-        cmb[j++]= (a[0]*a[1])/(a[2]+a[3]);
-        cmb[j++]= (a[0]*a[1])/(a[2]-a[3]); 
-        cmb[j++]= (a[0]*a[1])/(a[2]*a[3]);
-        cmb[j++]= (a[0]*a[1])/(a[2]/a[3]);
-    
-        cmb[j++]= (a[0]/a[1])+(a[2]+a[3]);
-        cmb[j++]= (a[0]/a[1])+(a[2]-a[3]); 
-        cmb[j++]= (a[0]/a[1])+(a[2]*a[3]);
-        cmb[j++]= (a[0]/a[1])+(a[2]/a[3]);
-        cmb[j++]= (a[0]/a[1])-(a[2]+a[3]);
-        cmb[j++]= (a[0]/a[1])-(a[2]-a[3]); 
-        cmb[j++]= (a[0]/a[1])-(a[2]*a[3]);
-        cmb[j++]= (a[0]/a[1])-(a[2]/a[3]);
-        cmb[j++]= (a[0]/a[1])*(a[2]+a[3]);
-        cmb[j++]= (a[0]/a[1])*(a[2]-a[3]); 
-        cmb[j++]= (a[0]/a[1])*(a[2]*a[3]);
-        cmb[j++]= (a[0]/a[1])*(a[2]/a[3]);
-        cmb[j++]= (a[0]/a[1])/(a[2]+a[3]);
-        cmb[j++]= (a[0]/a[1])/(a[2]-a[3]); 
-        cmb[j++]= (a[0]/a[1])/(a[2]*a[3]);
-        cmb[j++]= (a[0]/a[1])/(a[2]/a[3]);
-    
-    
-    // d-combination a[0]_(a[1]_a[2]_a[3])
-        cmb[j++]= a[0]+(a[1]+a[2]+a[3]);
-        cmb[j++]= a[0]+(a[1]+a[2]-a[3]); 
-        cmb[j++]= a[0]+(a[1]+a[2]*a[3]);
-        cmb[j++]= a[0]+(a[1]+a[2]/a[3]);
-        cmb[j++]= a[0]+(a[1]-a[2]+a[3]);
-        cmb[j++]= a[0]+(a[1]-a[2]-a[3]); 
-        cmb[j++]= a[0]+(a[1]-a[2]*a[3]);
-        cmb[j++]= a[0]+(a[1]-a[2]/a[3]);
-        cmb[j++]= a[0]+(a[1]*a[2]+a[3]);
-        cmb[j++]= a[0]+(a[1]*a[2]-a[3]); 
-        cmb[j++]= a[0]+(a[1]*a[2]*a[3]);
-        cmb[j++]= a[0]+(a[1]*a[2]/a[3]);
-        cmb[j++]= a[0]+(a[1]/a[2]+a[3]);
-        cmb[j++]= a[0]+(a[1]/a[2]-a[3]); 
-        cmb[j++]= a[0]+(a[1]/a[2]*a[3]);
-        cmb[j++]= a[0]+(a[1]/a[2]/a[3]);
-   
-        cmb[j++]= a[0]-(a[1]+a[2]+a[3]);
-        cmb[j++]= a[0]-(a[1]+a[2]-a[3]); 
-        cmb[j++]= a[0]-(a[1]+a[2]*a[3]);
-        cmb[j++]= a[0]-(a[1]+a[2]/a[3]);
-        cmb[j++]= a[0]-(a[1]-a[2]+a[3]);
-        cmb[j++]= a[0]-(a[1]-a[2]-a[3]); 
-        cmb[j++]= a[0]-(a[1]-a[2]*a[3]);
-        cmb[j++]= a[0]-(a[1]-a[2]/a[3]);
-        cmb[j++]= a[0]-(a[1]*a[2]+a[3]);
-        cmb[j++]= a[0]-(a[1]*a[2]-a[3]);
-        cmb[j++]= a[0]-(a[1]*a[2]*a[3]); 
-        cmb[j++]= a[0]-(a[1]*a[2]/a[3]);
-        cmb[j++]= a[0]-(a[1]/a[2]+a[3]);
-        cmb[j++]= a[0]-(a[1]/a[2]-a[3]); 
-        cmb[j++]= a[0]-(a[1]/a[2]*a[3]);
-        cmb[j++]= a[0]-(a[1]/a[2]/a[3]); 
-   
-        cmb[j++]= a[0]*(a[1]+a[2]+a[3]);
-        cmb[j++]= a[0]*(a[1]+a[2]-a[3]); 
-        cmb[j++]= a[0]*(a[1]+a[2]*a[3]);
-        cmb[j++]= a[0]*(a[1]+a[2]/a[3]);
-        cmb[j++]= a[0]*(a[1]-a[2]+a[3]);
-        cmb[j++]= a[0]*(a[1]-a[2]-a[3]); 
-        cmb[j++]= a[0]*(a[1]-a[2]*a[3]);
-        cmb[j++]= a[0]*(a[1]-a[2]/a[3]);
-        cmb[j++]= a[0]*(a[1]*a[2]+a[3]);
-        cmb[j++]= a[0]*(a[1]*a[2]-a[3]); 
-        cmb[j++]= a[0]*(a[1]*a[2]*a[3]);
-        cmb[j++]= a[0]*(a[1]*a[2]/a[3]);
-        cmb[j++]= a[0]*(a[1]/a[2]+a[3]);
-        cmb[j++]= a[0]*(a[1]/a[2]-a[3]); 
-        cmb[j++]= a[0]*(a[1]/a[2]*a[3]);
-        cmb[j++]= a[0]*(a[1]/a[2]/a[3]);
-    
-        cmb[j++]= a[0]/(a[1]+a[2]+a[3]);
-        cmb[j++]= a[0]/(a[1]+a[2]-a[3]); 
-        cmb[j++]= a[0]/(a[1]+a[2]*a[3]);
-        cmb[j++]= a[0]/(a[1]+a[2]/a[3]);
-        cmb[j++]= a[0]/(a[1]-a[2]+a[3]);
-        cmb[j++]= a[0]/(a[1]-a[2]-a[3]); 
-        cmb[j++]= a[0]/(a[1]-a[2]*a[3]);
-        cmb[j++]= a[0]/(a[1]-a[2]/a[3]);
-        cmb[j++]= a[0]/(a[1]*a[2]+a[3]);
-        cmb[j++]= a[0]/(a[1]*a[2]-a[3]); 
-        cmb[j++]= a[0]/(a[1]*a[2]*a[3]);
-        cmb[j++]= a[0]/(a[1]*a[2]/a[3]);
-        cmb[j++]= a[0]/(a[1]/a[2]+a[3]);
-        cmb[j++]= a[0]/(a[1]/a[2]-a[3]); 
-        cmb[j++]= a[0]/(a[1]/a[2]*a[3]);
-        cmb[j++]= a[0]/(a[1]/a[2]/a[3]);
-    
-    
-    // e-combination a[0]_(a[1]_(a[2]_a[3]))
-        cmb[j++]= a[0]+(a[1]+(a[2]+a[3]));
-        cmb[j++]= a[0]+(a[1]+(a[2]-a[3])); 
-        cmb[j++]= a[0]+(a[1]+(a[2]*a[3]));
-        cmb[j++]= a[0]+(a[1]+(a[2]/a[3]));
-        cmb[j++]= a[0]+(a[1]-(a[2]+a[3]));
-        cmb[j++]= a[0]+(a[1]-(a[2]-a[3])); 
-        cmb[j++]= a[0]+(a[1]-(a[2]*a[3]));
-        cmb[j++]= a[0]+(a[1]-(a[2]/a[3]));
-        cmb[j++]= a[0]+(a[1]*(a[2]+a[3]));
-        cmb[j++]= a[0]+(a[1]*(a[2]-a[3])); 
-        cmb[j++]= a[0]+(a[1]*(a[2]*a[3]));
-        cmb[j++]= a[0]+(a[1]*(a[2]/a[3]));
-        cmb[j++]= a[0]+(a[1]/(a[2]+a[3]));
-        cmb[j++]= a[0]+(a[1]/(a[2]-a[3])); 
-        cmb[j++]= a[0]+(a[1]/(a[2]*a[3]));
-        cmb[j++]= a[0]+(a[1]/(a[2]/a[3]));
-   
-        cmb[j++]= a[0]-(a[1]+(a[2]+a[3]));
-        cmb[j++]= a[0]-(a[1]+(a[2]-a[3])); 
-        cmb[j++]= a[0]-(a[1]+(a[2]*a[3]));
-        cmb[j++]= a[0]-(a[1]+(a[2]/a[3]));
-        cmb[j++]= a[0]-(a[1]-(a[2]+a[3]));
-        cmb[j++]= a[0]-(a[1]-(a[2]-a[3])); 
-        cmb[j++]= a[0]-(a[1]-(a[2]*a[3]));
-        cmb[j++]= a[0]-(a[1]-(a[2]/a[3]));
-        cmb[j++]= a[0]-(a[1]*(a[2]+a[3]));
-        cmb[j++]= a[0]-(a[1]*(a[2]-a[3]));
-        cmb[j++]= a[0]-(a[1]*(a[2]*a[3])); 
-        cmb[j++]= a[0]-(a[1]*(a[2]/a[3]));
-        cmb[j++]= a[0]-(a[1]/(a[2]+a[3]));
-        cmb[j++]= a[0]-(a[1]/(a[2]-a[3])); 
-        cmb[j++]= a[0]-(a[1]/(a[2]*a[3]));
-        cmb[j++]= a[0]-(a[1]/(a[2]/a[3])); 
-   
-        cmb[j++]= a[0]*(a[1]+(a[2]+a[3]));
-        cmb[j++]= a[0]*(a[1]+(a[2]-a[3])); 
-        cmb[j++]= a[0]*(a[1]+(a[2]*a[3]));
-        cmb[j++]= a[0]*(a[1]+(a[2]/a[3]));
-        cmb[j++]= a[0]*(a[1]-(a[2]+a[3]));
-        cmb[j++]= a[0]*(a[1]-(a[2]-a[3])); 
-        cmb[j++]= a[0]*(a[1]-(a[2]*a[3]));
-        cmb[j++]= a[0]*(a[1]-(a[2]/a[3]));
-        cmb[j++]= a[0]*(a[1]*(a[2]+a[3]));
-        cmb[j++]= a[0]*(a[1]*(a[2]-a[3])); 
-        cmb[j++]= a[0]*(a[1]*(a[2]*a[3]));
-        cmb[j++]= a[0]*(a[1]*(a[2]/a[3]));
-        cmb[j++]= a[0]*(a[1]/(a[2]+a[3]));
-        cmb[j++]= a[0]*(a[1]/(a[2]-a[3])); 
-        cmb[j++]= a[0]*(a[1]/(a[2]*a[3]));
-        cmb[j++]= a[0]*(a[1]/(a[2]/a[3]));
-    
-        cmb[j++]= a[0]/(a[1]+(a[2]+a[3]));
-        cmb[j++]= a[0]/(a[1]+(a[2]-a[3])); 
-        cmb[j++]= a[0]/(a[1]+(a[2]*a[3]));
-        cmb[j++]= a[0]/(a[1]+(a[2]/a[3]));
-        cmb[j++]= a[0]/(a[1]-(a[2]+a[3]));
-        cmb[j++]= a[0]/(a[1]-(a[2]-a[3])); 
-        cmb[j++]= a[0]/(a[1]-(a[2]*a[3]));
-        cmb[j++]= a[0]/(a[1]-(a[2]/a[3]));
-        cmb[j++]= a[0]/(a[1]*(a[2]+a[3]));
-        cmb[j++]= a[0]/(a[1]*(a[2]-a[3])); 
-        cmb[j++]= a[0]/(a[1]*(a[2]*a[3]));
-        cmb[j++]= a[0]/(a[1]*(a[2]/a[3]));
-        cmb[j++]= a[0]/(a[1]/(a[2]+a[3]));
-        cmb[j++]= a[0]/(a[1]/(a[2]-a[3])); 
-        cmb[j++]= a[0]/(a[1]/(a[2]*a[3]));
-        cmb[j++]= a[0]/(a[1]/(a[2]/a[3]));
-            
-        for (int i = 0; i < cmb.length; i++){
-            v = i;
-            if (Math.round(cmb[i])==p) {
-                b = true;
-                //System.out.println("cmb["+i+"]" + b);
-                break;
-            }    
-        }
+           
     return b;
     } 
 }
