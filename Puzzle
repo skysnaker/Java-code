@@ -2,6 +2,8 @@
 package puzzle;
 
 import java.lang.reflect.*;
+import java.util.HashMap; 
+import java.util.Map; 
 
 public class Puzzle {
     
@@ -10,6 +12,7 @@ public class Puzzle {
     private static int[] arrayNums;
     static boolean b;
     static String met;
+    static String formula;
                 
     public void setNums() {
         int[] n = new int[4];
@@ -25,26 +28,27 @@ public class Puzzle {
         Puzzle s = new Puzzle();
         s.setNums();
         s.canBeEqualTo24(arrayNums);
-        System.out.println(b +" method_"+ met+ " combination_№"+v);
+        System.out.println(b +" method_"+ met+ " combination_№"+v );
+        System.out.println("formula: "+ formula);
     }
     
     public boolean canBeEqualTo24(int[] nums) 
     throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Puzzle s = new Puzzle();        
         Sequence seq = new Sequence();
+        float[] r = new float[4];
+            r[0] =  nums[0]; 
+            r[1] =  nums[1];
+            r[2] =  nums[2];
+            r[3] =  nums[3];
                 
         Method[] m = Sequence.class.getMethods();
                
         for (Method m1 : m) {
-            int[] result1 = (int[]) m1.invoke(seq, nums);
+            float[] result = (float[]) m1.invoke(seq, r);
             String MethodName = m1.getName();
-            //System.out.println(MethodName);
-            float[] r = new float[4];
-            r[0] =  result1[0]; 
-            r[1] =  result1[1];
-            r[2] =  result1[2];
-            r[3] =  result1[3];
-            s.all(r);
+            
+            s.all(result);            //method of combination
             if (b==true){
                 met = MethodName;
                 break;
@@ -57,10 +61,28 @@ public class Puzzle {
  
     public boolean all (float[]a){
         int j = 0;
-        float[] cmb = new float [321]; 
+        int g = 0;
+        float[] cmb = new float [320];
+        
+        Map<Integer, String> hashMap = new HashMap<Integer, String>();
+        hashMap.put((int)(a[0]+a[1]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
+        hashMap.put((int)(a[0]+a[2]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
+        hashMap.put((int)(a[0]+a[2]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
+        hashMap.put((int)(a[0]+a[0]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
+        hashMap.put((int)(a[0]+a[3]+a[2]+a[3]), "a[0]+a[1]+a[2]+a[3]");
+        
+        for (Integer key : hashMap.keySet()) {
+            if (key>2) {
+                b = true;
+                formula = hashMap.get(key);
+                break;
+            } else {
+                b = false;
+            }
+            
+        }
         
         // a-combination x_a[1]_a[2]_a[3] 64
-        cmb[j]= a[0]+a[1]+a[2]+a[3];   
         cmb[j++]= a[0]+a[1]+a[2]+a[3];
         cmb[j++]= a[0]+a[1]+a[2]-a[3]; 
         cmb[j++]= a[0]+a[1]+a[2]*a[3];
@@ -411,7 +433,7 @@ public class Puzzle {
             
         for (int i = 0; i < cmb.length; i++){
             v = i;
-            if (Math.round(cmb[i])==24) {
+            if (Math.round(cmb[i])==p) {
                 b = true;
                 //System.out.println("cmb["+i+"]" + b);
                 break;
