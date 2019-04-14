@@ -6,9 +6,10 @@ import java.lang.reflect.*;
 public class Puzzle {
     
     final int p = 24;
-    int v;
+    static int v;
     private static int[] arrayNums;
-    static boolean b=false;
+    static boolean b;
+    static String met;
                 
     public void setNums() {
         int[] n = new int[4];
@@ -24,31 +25,30 @@ public class Puzzle {
         Puzzle s = new Puzzle();
         s.setNums();
         s.canBeEqualTo24(arrayNums);
-        System.out.println(b);
+        System.out.println(b +" method_"+ met+ " combination_№"+v);
     }
     
     public boolean canBeEqualTo24(int[] nums) 
     throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Puzzle s = new Puzzle();        
         Sequence seq = new Sequence();
-        Class c1 = seq.getClass();
-        
-        Method[] m1 = Sequence.class.getMethods();
+                
+        Method[] m = Sequence.class.getMethods();
                
-        for(int i = 0; i < m1.length; i++) {
-            int[] result1 = (int[]) m1[i].invoke(seq, nums);
-            String MethodName = m1[i].getName();
-            
+        for (Method m1 : m) {
+            int[] result1 = (int[]) m1.invoke(seq, nums);
+            String MethodName = m1.getName();
+            //System.out.println(MethodName);
             float[] r = new float[4];
             r[0] =  result1[0]; 
             r[1] =  result1[1];
             r[2] =  result1[2];
             r[3] =  result1[3];
-            //System.out.println(MethodName);
-            
             s.all(r);
-            System.out.println(MethodName);
-            
+            if (b==true){
+                met = MethodName;
+                break;
+            }
         }
              
         return b;
@@ -410,9 +410,10 @@ public class Puzzle {
         cmb[j++]= a[0]/(a[1]/(a[2]/a[3]));
             
         for (int i = 0; i < cmb.length; i++){
-            v = Math.round(cmb[i]);
-            if (v==24) {
-                System.out.println("cmb{"+i+"]");
+            v = i;
+            if (Math.round(cmb[i])==24) {
+                b = true;
+                //System.out.println("cmb["+i+"]" + b);
                 break;
             }    
         }
