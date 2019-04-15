@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap; 
 import java.util.Map; 
 
+
 public class Puzzle {
     
     static int p = 24;
     private static int[] arrayNums;
-    static boolean b;
+    static boolean b = false;
     static ArrayList formula = new ArrayList();
     String form;
     
@@ -24,8 +25,7 @@ public class Puzzle {
         arrayNums = n;
     }
             
-    public static void main(String[] args) 
-            throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public static void main(String[] args) {
         Puzzle s = new Puzzle();
         s.setNums();
         s.canBeEqualTo24(arrayNums);
@@ -35,37 +35,34 @@ public class Puzzle {
             formula.forEach((num) -> {
                 System.out.println(num+"="+p);
             });
-            
         } else {
             System.out.println(b + " из данного набора чисел невозможно составить выражение, равное  " + p);
         }
                 
     }
     
-    public boolean canBeEqualTo24(int[] nums) 
-    throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public boolean canBeEqualTo24(int[] nums) {
         
-        float[] r = new float[4];
+       try { 
+            float[] r = new float[4];
             r[0] =  nums[0]; 
             r[1] =  nums[1];
             r[2] =  nums[2];
             r[3] =  nums[3];
-            
-        Sequence seq = new Sequence();       
-        Method[] m = Sequence.class.getMethods();
-               
-        for (int i=0; i<m.length; i++) {
-            float[] result = (float[]) m[i].invoke(seq, r);
-            String f = this.all(result);
-            if (f!=null){
-                b=true;
-                formula.add(f);
-                break;
-            } else {
-                b = false;
-                //break;
+            Sequence seq = new Sequence();       
+            Method[] m = Sequence.class.getMethods();
+            for (Method m1 : m) {
+                float[] result = (float[]) m1.invoke(seq, r); //for_sequence
+                String f = this.all(result);                  //for_combination +,-,*,/,(,);  
+                if (f!=null){
+                    b=true;
+                    formula.add(f);
+                }
             }
-            
+        }catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException ex) {
+            //System.out.println("catch");
+        }finally{
+            //System.out.println("finally");
         }
         
         return b;
@@ -78,7 +75,7 @@ public class Puzzle {
         
         
         
-        // a-combination x_a[1]_a[2]_a[3] 64
+        // a-combination a[0]_a[1]_a[2]_a[3] 64
         hashMap.put(Math.round(a[0]+a[1]+a[2]+a[3]), String.format("%.0f+%.0f+%.0f+%.0f", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round(a[0]+a[1]+a[2]-a[3]), String.format("%.0f+%.0f+%.0f-%.0f", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round(a[0]+a[1]+a[2]*a[3]), String.format("%.0f+%.0f+%.0f*%.0f", a[0],a[1],a[2],a[3]));
@@ -148,7 +145,7 @@ public class Puzzle {
         hashMap.put(Math.round(a[0]/a[1]/a[2]/a[3]), String.format("%.0f/%.0f/%.0f/%.0f", a[0],a[1],a[2],a[3]));
     
     
-    // b-combination a[0]_a[1]_(a[2]_a[3])
+    // combination a[0]_a[1]_(a[2]_a[3])
         hashMap.put(Math.round(a[0]+a[1]+(a[2]+a[3])), String.format("%.0f+%.0f+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
         hashMap.put(Math.round(a[0]+a[1]+(a[2]-a[3])), String.format("%.0f+%.0f+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round(a[0]+a[1]+(a[2]*a[3])), String.format("%.0f+%.0f+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
@@ -218,7 +215,7 @@ public class Puzzle {
         hashMap.put(Math.round(a[0]/a[1]/(a[2]/a[3])), String.format("%.0f/%.0f/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
     
     
-    // c-combination (a[0]_a[1])_(a[2]_a[3])
+    // combination (a[0]_a[1])_(a[2]_a[3])
         hashMap.put(Math.round((a[0]+a[1])+(a[2]+a[3])), String.format("(%.0f+%.0f)+(%.0f+%.0f)", a[0],a[1],a[2],a[3]));
         hashMap.put(Math.round((a[0]+a[1])+(a[2]-a[3])), String.format("(%.0f+%.0f)+(%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round((a[0]+a[1])+(a[2]*a[3])), String.format("(%.0f+%.0f)+(%.0f*%.0f)", a[0],a[1],a[2],a[3]));
@@ -288,7 +285,7 @@ public class Puzzle {
         hashMap.put(Math.round((a[0]/a[1])/(a[2]/a[3])), String.format("(%.0f/%.0f)/(%.0f/%.0f)", a[0],a[1],a[2],a[3]));
     
     
-    // d-combination a[0]_(a[1]_a[2]_a[3])
+    // combination a[0]_(a[1]_a[2]_a[3])
         hashMap.put(Math.round(a[0]+(a[1]+a[2]+a[3])), String.format("%.0f+(%.0f+%.0f+%.0f)", a[0],a[1],a[2],a[3]));
         hashMap.put(Math.round(a[0]+(a[1]+a[2]-a[3])), String.format("%.0f+(%.0f+%.0f-%.0f)", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round(a[0]+(a[1]+a[2]*a[3])), String.format("%.0f+(%.0f+%.0f*%.0f)", a[0],a[1],a[2],a[3]));
@@ -358,7 +355,7 @@ public class Puzzle {
         hashMap.put(Math.round(a[0]/(a[1]/a[2]/a[3])), String.format("%.0f/(%.0f/%.0f/%.0f)", a[0],a[1],a[2],a[3]));
     
     
-    // e-combination a[0]_(a[1]_(a[2]_a[3]))
+    // combination a[0]_(a[1]_(a[2]_a[3]))
         hashMap.put(Math.round(a[0]+(a[1]+(a[2]+a[3]))), String.format("%.0f+(%.0f+(%.0f+%.0f))", a[0],a[1],a[2],a[3]));
         hashMap.put(Math.round(a[0]+(a[1]+(a[2]-a[3]))), String.format("%.0f+(%.0f+(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round(a[0]+(a[1]+(a[2]*a[3]))), String.format("%.0f+(%.0f+(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
@@ -426,8 +423,6 @@ public class Puzzle {
         hashMap.put(Math.round(a[0]/(a[1]/(a[2]-a[3]))), String.format("%.0f/(%.0f/(%.0f-%.0f))", a[0],a[1],a[2],a[3])); 
         hashMap.put(Math.round(a[0]/(a[1]/(a[2]*a[3]))), String.format("%.0f/(%.0f/(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
         hashMap.put(Math.round(a[0]/(a[1]/(a[2]/a[3]))), String.format("%.0f/(%.0f/(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
-        
-        
         
         for (Integer key : hashMap.keySet()) {
             if (key==p) {
