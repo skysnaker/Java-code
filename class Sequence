@@ -4,79 +4,79 @@ public class Sequence {
     
         //first s[0]
         
-        public int[] seq1 (int[] s){ int[] ar = new int[4];
+        public float[] seq1 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[0]; ar[1]=s[1]; ar[2]=s[2]; ar[3]=s[3]; return ar;}
         
-        public int[] seq2 (int[] s){ int[] ar = new int[4];
+        public float[] seq2 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[0]; ar[1]=s[1]; ar[2]=s[3]; ar[3]=s[2]; return ar;}
     
-        public int[] seq3 (int[] s){ int[] ar = new int[4];
+        public float[] seq3 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[0]; ar[1]=s[2]; ar[2]=s[3]; ar[3]=s[1]; return ar;}
     
-        public int[] seq4 (int[] s){ int[] ar = new int[4];
+        public float[] seq4 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[0]; ar[1]=s[2]; ar[2]=s[1]; ar[3]=s[3]; return ar;}
     
-        public int[] seq5 (int[] s){ int[] ar = new int[4];
+        public float[] seq5 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[0]; ar[1]=s[3]; ar[2]=s[2]; ar[3]=s[1]; return ar;}
     
-        public int[] seq6 (int[] s){ int[] ar = new int[4];
+        public float[] seq6 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[0]; ar[1]=s[3]; ar[2]=s[1]; ar[3]=s[2]; return ar;}
     
     //first s[1]
-        public int[] seq7 (int[] s){ int[] ar = new int[4];
+        public float[] seq7 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[1]; ar[1]=s[2]; ar[2]=s[3]; ar[3]=s[0]; return ar;}
     
-        public int[] seq8 (int[] s){ int[] ar = new int[4];
+        public float[] seq8 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[1]; ar[1]=s[2]; ar[2]=s[0]; ar[3]=s[3]; return ar;}
     
-        public int[] seq9 (int[] s){ int[] ar = new int[4];
+        public float[] seq9 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[1]; ar[1]=s[3]; ar[2]=s[2]; ar[3]=s[0]; return ar;}
     
-        public int[] seq10 (int[] s){ int[] ar = new int[4];
+        public float[] seq10 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[1]; ar[1]=s[3]; ar[2]=s[0]; ar[3]=s[2]; return ar;}
     
-        public int[] seq11 (int[] s){ int[] ar = new int[4];
+        public float[] seq11 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[1]; ar[1]=s[0]; ar[2]=s[2]; ar[3]=s[3]; return ar;}
     
-        public int[] seq12 (int[] s){ int[] ar = new int[4];
+        public float[] seq12 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[1]; ar[1]=s[0]; ar[2]=s[3]; ar[3]=s[2]; return ar;}
     
     //first s[2]
-        public int[] seq13 (int[] s){ int[] ar = new int[4];
+        public float[] seq13 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[2]; ar[1]=s[3]; ar[2]=s[0]; ar[3]=s[1]; return ar;}
     
-        public int[] seq14 (int[] s){ int[] ar = new int[4];
+        public float[] seq14 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[2]; ar[1]=s[3]; ar[2]=s[1]; ar[3]=s[0]; return ar;}
     
-        public int[] seq15 (int[] s){ int[] ar = new int[4];
+        public float[] seq15 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[2]; ar[1]=s[1]; ar[2]=s[3]; ar[3]=s[0]; return ar;}
     
-        public int[] seq16 (int[] s){ int[] ar = new int[4];
+        public float[] seq16 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[2]; ar[1]=s[1]; ar[2]=s[0]; ar[3]=s[3]; return ar;}
     
-        public int[] seq17 (int[] s){ int[] ar = new int[4];
+        public float[] seq17 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[2]; ar[1]=s[0]; ar[2]=s[1]; ar[3]=s[3]; return ar;}
     
-        public int[] seq18 (int[] s){ int[] ar = new int[4];
+        public float[] seq18 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[2]; ar[1]=s[0]; ar[2]=s[3]; ar[3]=s[1]; return ar;}
     
     //first s[3]
-        public int[] seq19 (int[] s){ int[] ar = new int[4];
+        public float[] seq19 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[3]; ar[1]=s[0]; ar[2]=s[1]; ar[3]=s[2]; return ar;}
     
-        public int[] seq20 (int[] s){ int[] ar = new int[4];
+        public float[] seq20 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[3]; ar[1]=s[0]; ar[2]=s[2]; ar[3]=s[1]; return ar;}
     
-        public int[] seq21 (int[] s){ int[] ar = new int[4];
+        public float[] seq21 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[3]; ar[1]=s[1]; ar[2]=s[0]; ar[3]=s[2]; return ar;}
     
-        public int[] seq22 (int[] s){ int[] ar = new int[4];
+        public float[] seq22 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[3]; ar[1]=s[1]; ar[2]=s[2]; ar[3]=s[0]; return ar;}
     
-        public int[] seq23 (int[] s){ int[] ar = new int[4];
+        public float[] seq23 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[3]; ar[1]=s[2]; ar[2]=s[0]; ar[3]=s[1]; return ar;}
     
-        public int[] seq24 (int[] s){ int[] ar = new int[4];
+        public float[] seq24 (float[] s){ float[] ar = new float[s.length];
             ar[0]=s[3]; ar[1]=s[2]; ar[2]=s[1]; ar[3]=s[0]; return ar;}
     
 }
