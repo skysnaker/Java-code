@@ -2,20 +2,17 @@
 package puzzle;
 
 import java.lang.reflect.*;
-import java.util.ArrayList;
 import java.util.HashMap; 
 import java.util.Map; 
 
 
 public class Puzzle {
     
-    static int p = 24;
+    static int p =24;
     private static int[] arrayNums;
     static boolean b = false;
-    static ArrayList formula = new ArrayList();
-    String form;
-    
-                
+    static String formula;
+                    
     public void setNums() {
         int[] n = new int[4];
         n[0]= 4;
@@ -31,10 +28,7 @@ public class Puzzle {
         s.canBeEqualTo24(arrayNums);
         
         if (b==true){
-            System.out.println(b);
-            formula.forEach((num) -> {
-                System.out.println(num+"="+p);
-            });
+            System.out.println(b + " " + formula + "="+p);
         } else {
             System.out.println(b + " из данного набора чисел невозможно составить выражение, равное  " + p);
         }
@@ -43,33 +37,29 @@ public class Puzzle {
     
     public boolean canBeEqualTo24(int[] nums) {
         
-       try { 
+        try {
             float[] r = new float[4];
-            r[0] =  nums[0]; 
-            r[1] =  nums[1];
-            r[2] =  nums[2];
-            r[3] =  nums[3];
+            r[0] = (float) nums[0]; 
+            r[1] = (float) nums[1];
+            r[2] = (float) nums[2];
+            r[3] = (float) nums[3];
             Sequence seq = new Sequence();       
             Method[] m = Sequence.class.getMethods();
             for (Method m1 : m) {
+               
                 float[] result = (float[]) m1.invoke(seq, r); //for_sequence
-                String f = this.all(result);                  //for_combination +,-,*,/,(,);  
-                if (f!=null){
-                    b=true;
-                    formula.add(f);
-                }
-            }
-        }catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException ex) {
-            //System.out.println("catch");
+                this.all(result);                             //for_combination +,-,*,/,(,);  
+                  
+            }    
+        } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException ex){
+            //System.out.println("catch");    
         }finally{
             //System.out.println("finally");
         }
-        
         return b;
-      
     }
  
-    public String all (float[]a){
+    public void all (float[]a){
         
         Map<Integer, String> hashMap = new HashMap<>();
         
@@ -424,12 +414,14 @@ public class Puzzle {
         hashMap.put(Math.round(a[0]/(a[1]/(a[2]*a[3]))), String.format("%.0f/(%.0f/(%.0f*%.0f))", a[0],a[1],a[2],a[3]));
         hashMap.put(Math.round(a[0]/(a[1]/(a[2]/a[3]))), String.format("%.0f/(%.0f/(%.0f/%.0f))", a[0],a[1],a[2],a[3]));
         
+        
+        
         for (Integer key : hashMap.keySet()) {
             if (key==p) {
-                form = hashMap.get(key);
+                formula = hashMap.get(key);
+                b=true;
             }
         }
-        return form;
-    
+        
     } 
 }
